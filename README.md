@@ -366,16 +366,18 @@ const server = http.createServer((req,res) => {
 - The fields that are read from the json file are dynamically place on the template. To do this, put a placeholder for the values of these fields inside the html and replace them later with actual data.
 - The overview.html file will display all the products and then each product will have its own detail page. 
 Here are the fields that we have in our json file;
-    "id": 
-    "productName": 
-    "image": 
-    "from": 
-    "nutrients": 
-    "quantity": 
-    "price": 
-    "organic": 
-    "description": 
+-    "id": 
+-    "productName": 
+-    "image": 
+-    "from": 
+-    "nutrients": 
+-    "quantity": 
+-    "price": 
+-    "organic": 
+-    "description": 
+
 - Begin by modifying the product.html file (the details page)
+ ![NodeJS UI1](/images/nodeTemp1.png)
 Change the name of the html file and keep the original in case you mess up the html. (product.html to template-product.html). Add the placeholders inside the file. 
  (. . . here is just a part of the html file as an example how the placeholders look like;)
  ```html
@@ -395,9 +397,10 @@ Change the name of the html file and keep the original in case you mess up the h
 ```
  . . .
  
- ![NodeJS UI1](/images/nodeTemp1.png)
+
 
 - Next up modify the overview.html. (the opening page that displays all products).
+ ![NodeJS UI1](/images/nodeTemp2.png)
 This file has a carts-container in which we have a figure tag in which the products will be individually placed. Since we don’t know how many products we have, we can’t tell how many figure tags we need initially. 
 Create a template-card that will hold only one card (one figure element/ one product) - template-card.html. Copy one figure element from template-overview.html and past it here.
 ```html
