@@ -360,5 +360,84 @@ const server = http.createServer((req,res) => {
 
 ```
 
+### HTML Templating: Building the Templates (UI)
+
+- Create a template that will hold actual data that is being read from a json file. 
+- The fields that are read from the json file are dynamically place on the template. To do this, put a placeholder for the values of these fields inside the html and replace them later with actual data.
+- The overview.html file will display all the products and then each product will have its own detail page. 
+Here are the fields that we have in our json file;
+    "id": 
+    "productName": 
+    "image": 
+    "from": 
+    "nutrients": 
+    "quantity": 
+    "price": 
+    "organic": 
+    "description": 
+- Begin by modifying the product.html file (the details page)
+Change the name of the html file and keep the original in case you mess up the html. (product.html to template-product.html). Add the placeholders inside the file. 
+ (. . . here is just a part of the html file as an example how the placeholders look like;)
+ ```html
+          <span class="product__emoji product__emoji--5">{%IMAGE%}</span>
+          <span class="product__emoji product__emoji--6">{%IMAGE%}</span>
+          <span class="product__emoji product__emoji--7">{%IMAGE%}</span>
+          <span class="product__emoji product__emoji--8">{%IMAGE%}</span>
+          <span class="product__emoji product__emoji--9">{%IMAGE%}</span>
+        </div>
+        <h2 class="product__name">{%PRODUCTNAME%}}</h2>
+        <div class="product__details">
+          <p><span class="emoji-left">🌍</span>From {%FROM%}}</p>
+          <p><span class="emoji-left">❤️</span>{%NUTRIENTS%}}</p>
+          <p><span class="emoji-left">📦</span>{%QUANTITY%}}</p>
+          <p><span class="emoji-left">🏷</span>{%PRICE%}$</p>
+        </div>
+```
+ . . .
+ 
+ ![NodeJS UI1](/images/nodeTemp1.png)
+
+- Next up modify the overview.html. (the opening page that displays all products).
+This file has a carts-container in which we have a figure tag in which the products will be individually placed. Since we don’t know how many products we have, we can’t tell how many figure tags we need initially. 
+Create a template-card that will hold only one card (one figure element/ one product) - template-card.html. Copy one figure element from template-overview.html and past it here.
+```html
+<figure class="card">
+    <div class="card__emoji">{%IMAGE%}{%IMAGE%}</div>
+    <div class="card__title-box">
+      <h2 class="card__title">{%PRODUCTNAME%}</h2>
+    </div>
+    <div class="card__details">
+      <div class="card__detail-box {%NOT_ORGANIC%}">
+        <h6 class="card__detail">{%QUANTITY%}</h6>
+      </div>
+      <div class="card__detail-box">
+        <h6 class="card__detail card__detail--price">{%PRICE%}</h6>
+      </div>
+    </div>
+    <a class="card__link" href="/product?id={%ID%}">      link with id 
+      <span>Detail <i class="emoji-right">👉</i></span>
+    </a>
+  </figure>
+ ```
+- Delete all of the cards(figure elements from the template-overview.html) and create a placeholder in here - {%PRODUCT-CARDS%}. . This is where the products will be added to dynamically.
+```html
+  <body>
+    <div class="container">
+      <h1>🌽 Node Farm 🥦</h1>
+      <div class="cards-container">
+          {%PRODUCT-CARDS%}
+      </div>
+    </div>
+  </body>
+```
+Modify the a tag inside the overview-template which will take us to the details template. The “href” property will have a the path to the details.html with the product id number attached as a query string. The id placeholder will be replaced with the correct id number dynamically.
+```html
+    <a class="card__link" href="/product?id={%ID%}">
+      <span>Detail <i class="emoji-right">👉</i></span>
+    </a>
+
+```
+
+
 ----------------------------------------
 
