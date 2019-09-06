@@ -192,6 +192,144 @@ Listening to requests on port 8000
 
 *Note: To stop the server running => Ctrl + C*
 
+### Routing
+	For routing use the ‘url’ model.
+```javascript
+const url = require('url');
+```
+*(Note: To select multiple word phrases in visual studio, highlight the word and press Ctrl + D)*
+
+##### Example: we will check the path names and respond to that particular url
+```javascript
+const http = require('http');
+const url = require('url');
+
+const server = http.createServer((req,res) => { 
+    const pathName =  res.url;                      requested url from the page
+    console.log(res,url);
+    res.end('hello from the server');
+    if(pathName === '/' || pathName === '/overview'){
+        res.end('This is the OVERVIEW');
+    }else if(pathName === '/product'){
+        res.end('This is the PRODUCT');
+    }
+});
+
+server.listen(8000, '127.0.0.1', () => {
+    console.log('Listening to requests on port 8000');
+});
+```
+##### Run the server:
+PS C:\Users\aygun\OneDrive\Documents\Udemy\The Complete Bootcamp2019\complete-node-bootcamp-master\complete-node-bootcamp-master\1-node-farm\starter> node index.js
+Listening to requests on port 8000
+
+##### OUTPUT:
+![NodeJS Routing display1](/images/nodeRouting1.png)
+![NodeJS Routing display2](/images/nodeRouting2.png)
+
+When there is a request that we that wasn’t handled in the code, the server will not respond, and the search wheel won’t stop spinning. To handle this problem, add another route within the else statement.
+```javascript
+const server = http.createServer((req,res) => { 
+    const pathName =  req.url;
+
+    if(pathName === '/' || pathName === '/overview'){
+        res.end('This is the OVERVIEW');
+    }else if(pathName === '/product'){
+        res.end('This is the PRODUCT');
+    }else{
+        res.end('Page not found!')
+    }
+});
+```
+ A 404 is an http status code; so, we can also add the http status to the response.
+```javascript 
+    }else{
+        res.writeHead(404);     You can examine the server response in Dev tools(inspect). 
+        res.end('Page not found!')
+    }
+```
+A HttpHeader is a piece of information about the response *(metadata about the response)*. We can use writeHead () to send back headers by adding objects as a parameter to the method. One of the standard headers is to inform the browser of the Content Type. When we set to Content Type to text/html, the browser will now expect some html.
+We can also add our own headers in here and pass on data about the response.
+##### Example:
+```javascript
+const server = http.createServer((req,res) => { 
+    const pathName =  req.url;
+
+    if(pathName === '/' || pathName === '/overview'){
+        res.end('This is the OVERVIEW');
+    }else if(pathName === '/product'){
+        res.end('This is the PRODUCT');
+    }else{
+        res.writeHead(404, {
+            'Content-type':'text/html',
+            'my-own-header':'hello-world'
+        });
+        res.end('<h1>Page not found!</h1>')
+    }
+});
+```
+
+![NodeJS Routing display3](/images/nodeRouting3.png)
+
+### Building a (Very) Simple AP
+
+- API – A service from which we can request some data. 
+In this example some data that we are offering in the application – The data is in our json file. JSON is a simple text format that looks like a JavaScript Object. Each object inside this array has keys which must be of type string and a values attached to each key it. This is the data that the API will send to the client when requested.
+##### Example: 
+First add another route to our project and a simple placeholder for the response.
+```javascript
+const server = http.createServer((req,res) => { 
+    const pathName =  req.url;
+
+    if(pathName === '/' || pathName === '/overview'){
+        res.end('This is the OVERVIEW');
+    }else if(pathName === '/product'){
+        res.end('This is the PRODUCT');
+    }else if(pathName === '/api'){
+        res.end('API');
+    }else{
+        res.writeHead(404, {
+            'Content-type':'text/html',
+            'my-own-header':'hello-world'
+        });
+        res.end('<h1>Page not found!</h1>')
+    }
+});
+```
+
+- Next, 
+  - Read data from the data.json file, then
+  - parse JSON into JavaScript, and then 
+  - send back the result to the client.
+To find where the current file is located - a path that starts with a dot changes depending on where we run node. A better way is to use __dirname variable, which will locate the script that we want to execute. For that make use of a template string and use the variable. (The required functions are an exception to this rule.)
+When sending back the data we need to we need to tell the browser the content type. In our case it’s JSON. 
+```javascript
+const fs = require('fs');
+const http = require('http');
+const server = http.createServer((req,res) => { 
+    const pathName =  req.url;
+
+    if(pathName === '/' || pathName === '/overview'){
+        res.end('This is the OVERVIEW');
+    }else if(pathName === '/product'){
+        res.end('This is the PRODUCT');
+    }else if(pathName === '/api'){
+        fs.readFile(`${__dirname}/dev-data/data.json`,'utf-8', (err, data) => {
+            const productData = JSON.parse(data);
+            res.writeHead(200,{ 'Content-type': 'application/json'});
+            res.end(data);
+        });
+    }else{
+        res.writeHead(404, {
+            'Content-type':'text/html',
+            'my-own-header':'hello-world'
+        });
+        res.end('<h1>Page not found!</h1>')
+    }
+});
+```
+![NodeJS API](/images/nodeAPI.png)
+
 
 
 
