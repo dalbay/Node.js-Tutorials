@@ -5,7 +5,7 @@
 
 - [Install Node.js](https://nodejs.org/en/)
 
- ![chapter2_Project](../images/nodeImg.png)
+ ![chapter2_Project](/images/nodeImg.png)
  
  After you install node.js on your local machine test it in CMD – node -v (should display the version) 
  ```html
