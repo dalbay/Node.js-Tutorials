@@ -379,8 +379,8 @@ Here are the fields that we have in our json file;
 - Begin by modifying the product.html file (the details page)
  ![NodeJS UI1](/images/nodeTemp1.png)
 
-	Change the name of the html file and keep the original in case you mess up the html. (product.html to template-product.html). Add the placeholders inside the file. 
- (. . . here is just a part of the html file as an example how the placeholders look like;)
+	Change the name of the html file and keep the original in case you mess up the html. (product.html to template-product.html). Add the placeholders inside the file:
+- (. . . here is just a part of the html file as an example how the placeholders look like;)
  ```html
           <span class="product__emoji product__emoji--5">{%IMAGE%}</span>
           <span class="product__emoji product__emoji--6">{%IMAGE%}</span>
@@ -396,7 +396,7 @@ Here are the fields that we have in our json file;
           <p><span class="emoji-left">🏷</span>{%PRICE%}$</p>
         </div>
 ```
- . . .
+- . . .
  
 
 
