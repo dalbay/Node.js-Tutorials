@@ -189,7 +189,8 @@ server.listen(8000, '127.0.0.1', () => {
 PS C:\Users\aygun\OneDrive\Documents\Udemy\The Complete Bootcamp2019\complete-node-bootcamp-master\complete-node-bootcamp-master\1-node-farm\starter> node index.js
 Listening to requests on port 8000
 ![NodeJS Server display](/images/nodeServer.png)
-*Note: To stop the server running  Ctrl + C*
+
+*Note: To stop the server running => Ctrl + C*
 
 
 
