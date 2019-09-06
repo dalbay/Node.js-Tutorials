@@ -1,15 +1,10 @@
-﻿
+
 
 ### Install Node.js:
 
 
-- [Install Node.js](https://nodejs.org/en/)
+ ![nodeJS image](/images/nodeImg.png)
 
-
- ![NodeJS opening page](../images/nodeImg.png)
-
- ![chapter2_Project](/images/nodeImg.png)
->>>>>>> f08c5985cddad97e2ee42a299c24366c9b32ae93
  
  After you install node.js on your local machine test it in CMD – node -v (should display the version) 
  ```html
@@ -21,10 +16,10 @@
 -	Node.js enables JavaScript to be run in a different environment than just the browser.
 -	The V8 Engine executes the code – parse it and runs it in Node.js
 
- ![NodeJS and V8](../images/nodeV8.png)
+ ![NodeJS and V8](/images/nodeV8.png)
 
 ### What is Node.js
-![NodeJS why and when](../images/nodeWhy.png)
+![NodeJS why and when](/images/nodeWhy.png)
 
 
 #### Running JavaScript Outside the Browser
@@ -56,8 +51,13 @@ To make use of these modules we require them into our code and then store the re
 const fs = require('fs');
 
 #### Node Documentations:
-https://nodejs.org/en/docs/  -> click on the version that you are using. Here you will see all the different kind of modules that you can use: 
-![NodeJS why and when](../images/nodeDoc.png)
+
+![NodeJS why and when](/images/nodeDoc.png)
+
+
+
+
+
 ----------------------------------------
 
   1. What is the Title of The Man in the Taupe Blazer?
