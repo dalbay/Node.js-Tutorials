@@ -271,7 +271,7 @@ const server = http.createServer((req,res) => {
 
 ![NodeJS Routing display3](/images/nodeRouting3.png)
 
-### Building a (Very) Simple AP
+### Building a (Very) Simple API
 
 - API – A service from which we can request some data. 
 In this example some data that we are offering in the application – The data is in our json file. JSON is a simple text format that looks like a JavaScript Object. Each object inside this array has keys which must be of type string and a values attached to each key it. This is the data that the API will send to the client when requested.
@@ -361,72 +361,4 @@ const server = http.createServer((req,res) => {
 ```
 
 ----------------------------------------
-
-  1. What is the Title of The Man in the Taupe Blazer?
-  2. What does that title mean?
-  3. What languages did you see, where are they on the developer road map?
-  4. What is the conclusion at the end of the article?
-
-
-#### Plan for the day:
-
-1. What is the roadmap for this week?
-  1. Front-End
-    - Git
-    - Basic Terminal Usage
-    - Learn to Research
-    - Character Encodings
-    - Github
-    - HTML
-    - CSS
-
-2. VS-Code Familiarization
-  - Terminal
-    - Opened with `ctrl + \``
-    - terminal/shell
-    - Language is called *CLI*
-  - File Explorer
-    - Opened with `ctrl + b`
-    - This shows you the file structure of your system
-    - Folders vs. Workspace
-    - You can just right click in the file explorer to add folders and files
-  - Command Pallete `ctrl + p` or `ctrl + shift + p`
-    - Show keyboard shortcuts `ctrl + k, ctrl + s`
-
-3. HTML (Lesson 1: Building Your First Web Page)
-  - Define HTML & CSS
-  - *HTML Terms:*
-    - elements
-    - tags
-    - attributes
-    - HTML document structure
-    - self closing elements
-    - code validation
-  - *CSS Terms:*
-    - selectors
-    - properties
-    - values
-    - type selectors
-    - class selectors
-    - id selectors
-    - additional selectors
-  - Referencing CSS
-  - CSS Resets
-  - Cross Browser compatibility
-4. What is Github/Git?
-  - VCS: Version Control System
-  - DVCS: Distributed Version ontrol System
-  - Git: is the VCS we are going to use
-  - Git Projects (repositories)
-    - Commands:
-      - git init
-      - git clone
-      - git add
-      - git commit
-      - git status
-      - git pull
-      - git push
-      - git status
-  - GitHub to Git
-
 
