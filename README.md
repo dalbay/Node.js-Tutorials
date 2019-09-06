@@ -378,7 +378,8 @@ Here are the fields that we have in our json file;
 
 - Begin by modifying the product.html file (the details page)
  ![NodeJS UI1](/images/nodeTemp1.png)
-Change the name of the html file and keep the original in case you mess up the html. (product.html to template-product.html). Add the placeholders inside the file. 
+
+	Change the name of the html file and keep the original in case you mess up the html. (product.html to template-product.html). Add the placeholders inside the file. 
  (. . . here is just a part of the html file as an example how the placeholders look like;)
  ```html
           <span class="product__emoji product__emoji--5">{%IMAGE%}</span>
@@ -401,8 +402,8 @@ Change the name of the html file and keep the original in case you mess up the h
 
 - Next up modify the overview.html. (the opening page that displays all products).
  ![NodeJS UI1](/images/nodeTemp2.png)
-This file has a carts-container in which we have a figure tag in which the products will be individually placed. Since we don’t know how many products we have, we can’t tell how many figure tags we need initially. 
-Create a template-card that will hold only one card (one figure element/ one product) - template-card.html. Copy one figure element from template-overview.html and past it here.
+The carts-container in this file includes a figure tag for each product. Since we don’t know how many products we have, we can’t tell how many figure tags we need initially. 
+Create a template-card that will hold only one card (one figure element/ one product) - template-card.html. Copy the figure element from template-overview.html and past it here.
 ```html
 <figure class="card">
     <div class="card__emoji">{%IMAGE%}{%IMAGE%}</div>
@@ -422,7 +423,7 @@ Create a template-card that will hold only one card (one figure element/ one pro
     </a>
   </figure>
  ```
-- Delete all of the cards(figure elements from the template-overview.html) and create a placeholder in here - {%PRODUCT-CARDS%}. . This is where the products will be added to dynamically.
+- Delete the cards(figure elements from the template-overview.html) and create a placeholder in here - {%PRODUCT-CARDS%}. This is where the products will be added to dynamically.
 ```html
   <body>
     <div class="container">
@@ -433,13 +434,57 @@ Create a template-card that will hold only one card (one figure element/ one pro
     </div>
   </body>
 ```
-Modify the a tag inside the overview-template which will take us to the details template. The “href” property will have a the path to the details.html with the product id number attached as a query string. The id placeholder will be replaced with the correct id number dynamically.
+Modify the a tag inside the overview-template which will take us to the details template. The “href” property will have the path to the details.html with the product id number attached as a query string. The id placeholder will be replaced with the correct id number dynamically.
 ```html
     <a class="card__link" href="/product?id={%ID%}">
       <span>Detail <i class="emoji-right">👉</i></span>
     </a>
 
 ```
+
+### HTML Templating: Filling the Templates
+
+-	Replace the placeholders with the overview
+-	The first step is to load the template overview – each time we send a request for the /overview route, the first thing we do is to read the template overview.
+But like we did before, we can do this outside of the callback function. (This template will always be the same and we can write it into memory when we first start the application; when necessary modify it.) There is also no need to read the data each time there is a request. Do the same for each template.
+When sending back the template don’t forget to declare the content type as html. 
+```javascript
+const fs = require('fs');
+const http = require('http');
+
+const tempOverview = fs.readFileSync(`${__dirname}/templates/template-overview.html`, 'utf-8');
+const tempCard = fs.readFileSync(`${__dirname}/templates/template-card.html`, 'utf-8');
+const tempProduct = fs.readFileSync(`${__dirname}/templates/template-product.html`, 'utf-8');
+const server = http.createServer((req,res) => { 
+    const pathName =  req.url;    
+    // Overview page    
+    if(pathName === '/' || pathName === '/overview'){
+        res.writeHead(200,{ 'Content-type': 'text/html'});
+        res.end(tempOverview);
+    // Product page
+    }else if(pathName === '/product'){
+        res.end('This is the PRODUCT');
+    // API
+    }else if(pathName === '/api'){
+        res.writeHead(200,{ 'Content-type': 'application/json'});
+        res.end(data);
+    // Not  Found
+    }else{
+        res.writeHead(404, {
+            'Content-type':'text/html',
+            'my-own-header':'hello-world'
+        });
+        res.end('<h1>Page not found!</h1>')
+    }
+});
+
+// use that server an on that call listen.
+server.listen(8000, '127.0.0.1', () => {
+    console.log('Listening to requests on port 8000');
+});
+
+```
+Run the application in the server, type in the route for the overview template and open up the page to see if everything is running as expected.
 
 
 ----------------------------------------
