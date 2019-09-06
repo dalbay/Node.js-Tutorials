@@ -330,8 +330,35 @@ const server = http.createServer((req,res) => {
 ```
 ![NodeJS API](/images/nodeAPI.png)
 
+##### The issue with this code:
+Each time a user makes that API request, the server will read the file to send it back. A better solution would be if a user hits this route to send back the data without having to read it every time. In this case we will use the synchronous version for the read function, which won’t be a problem because we can place it in the top level. Top Level code is only executed once in the beginning. 
+The Callback function  (   *http.createServer((req,res) => { … });*  )  is the code that is executed every time a user makes a new request. The code that is outside the callback function, the top-level code, is only executed once when we start the program. 
+*(We need to have a good understanding of which code is blocking and why.)*	
+To solve this issue update your code to :
+```javascript
+const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8');
+const dataObj = JSON.parse(data);				      	             top-level code
 
+const server = http.createServer((req,res) => { 
+    const pathName =  req.url;
 
+    if(pathName === '/' || pathName === '/overview'){
+        res.end('This is the OVERVIEW');
+    }else if(pathName === '/product'){
+        res.end('This is the PRODUCT');
+    }else if(pathName === '/api'){		                      add another route
+        res.writeHead(200,{ 'Content-type': 'application/json'});
+        res.end(data); 							       sending back json
+    }else{
+        res.writeHead(404, {
+            'Content-type':'text/html',
+            'my-own-header':'hello-world'
+        });
+        res.end('<h1>Page not found!</h1>')
+    }
+});
+
+```
 
 ----------------------------------------
 
