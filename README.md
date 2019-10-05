@@ -89,7 +89,7 @@ const fs = require('fs');
 
 #### Callback Hell 
 The callback model - function is called once the one before has finished its work; this can quickly lead to some hard to read and manageable code. 
-##### For example: 
+#### Example:
 The second file read depends on the first one; than the third file read depends on the second one; and then the finally we want to use the final data to write as a result. This makes it hard to read and reason about. This problem is called ***Callback Hell***. To solve this problem, we can use *ES6 Promises or ES8 async/await*. 
 ```javascript
 const fs = require('fs');
