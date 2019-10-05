@@ -55,26 +55,25 @@ const fs = require('fs');
 
 ### Reading and Writing Files  
 	
-#### Read from file:
+#### Read/Write file Synchronosly (blocking):
+
 
 ![NodeJS why and when](/images/nodeReadWrite.png)
 
 ``` javascript
-// Read from file:
-	const fs = require('fs');
+    const fs = require('fs');
+// Read from file synchronosly:
 	const textIn = fs.readFileSync('./txt/input.txt','utf-8');
 	console.log(textIn);
-// Test  it in node -> this will read and display the content of the input.txt file.
+// Test it in node -> this will read and display the content of the input.txt file.
 
-// Write to file:
-	const fs = require('fs');
+// Write to file synchronosly:	
 // ES6 syntax:
 	const textOut = `This is what we know about the avocato: ${textIn}.\nCreated on ${Date.now()}`;
 // Previous Syntax without the backstrings:
 // 'this is: ' + textIn;
 	fs.writeFileSync('./txt/output.txt',textOut);
 	console.log('File written');
-
 ```  
 <br/>
 
@@ -151,7 +150,7 @@ fs.readFile('./txt/start.txt', 'utf-8', (err, data1)  => {
 ```  
 
 
-#### Example: - here we want to write the last two strings into a file.
+#### Example: - Write the last two strings to a file.
 ```javascript
 const fs = require('fs');
 
