@@ -50,11 +50,12 @@ const fs = require('fs');
 #### Node Documentations:
 
 ![NodeJS why and when](/images/nodeDoc.png)
+<br/>
 
 
 ### Reading and Writing Files
 	
-#### Read from file
+#### Read from file:
 
 ![NodeJS why and when](/images/nodeReadWrite.png)
 
