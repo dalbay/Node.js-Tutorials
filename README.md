@@ -25,11 +25,11 @@
 #### Running JavaScript Outside the Browser
 
 -	Start interacting with node in the command line; - we are going to use the build in terminal
-Type-in node  -> this will open up Node REPL  - Read-Evaluate-Print-Loop. It is very handy when we want to quickly test a JavaScript code snippet. 
-To exit REPL type in .exit or Ctrl + D
-Hit tab tab and you will see all the global variables that are available in Node
-When you type in an underscore will give you the previous output to use.
-Type in String. tab tag will give you the methods of the String class
+	- Type-in **node**  -> this will open up *Node REPL* (Read-Evaluate-Print-Loop). It is very handy when we want to quickly test a JavaScript code snippet. 
+    - To exit REPL type in .exit or Ctrl + D
+    - Hit tab tab and you will see all the global variables that are available in Node
+    - When you type in an underscore will give you the previous output to use.
+    - Type in String. tab tag will give you the methods of the String class
 
 #### Using Modules: Core Modules
 
