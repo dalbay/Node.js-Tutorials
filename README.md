@@ -161,7 +161,7 @@ fs.readFile('./txt/start.txt', 'utf-8', (err, data1)  => {
             console.log(data3);
 			
 			// Write to file Asynchronosly:
-            // we want to write data2 and data3 to a file.
+			// we want to write data2 and data3 to a file.
 			// the third argument (callback) will not return data, so we only need err argument;
 			
             fs.writeFile('./txt/final.txt', `${data2}\n${data3}`, 'utf-8', err => {  
