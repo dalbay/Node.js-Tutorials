@@ -53,25 +53,22 @@ const fs = require('fs');
 <br/>
 
 
-### Reading and Writing Files  
-	
-#### Read/Write file Synchronosly (blocking):
+### Reading and Writing Files Synchronosly (blocking):
 
 
 ![NodeJS why and when](/images/nodeReadWrite.png)
 
 ``` javascript
     const fs = require('fs');
+	
 // Read from file synchronosly:
 	const textIn = fs.readFileSync('./txt/input.txt','utf-8');
 	console.log(textIn);
-// Test it in node -> this will read and display the content of the input.txt file.
 
 // Write to file synchronosly:	
 // ES6 syntax:
 	const textOut = `This is what we know about the avocato: ${textIn}.\nCreated on ${Date.now()}`;
-// Previous Syntax without the backstrings:
-// 'this is: ' + textIn;
+// Previous Syntax without the backstrings: - 'this is: ' + textIn;
 	fs.writeFileSync('./txt/output.txt',textOut);
 	console.log('File written');
 ```  
@@ -114,21 +111,23 @@ fs.writeFile('start.txt', 'utf-8', (err,data1) => {
 #### Example:
 ```javascript
 	const fs = require('fs');
-	
+
+// Read from file Asynchronosly:
 // the third parameter is a callback function() with two arguments;  
 // (err if there was one, and the actual data itself.)
 
 	fs.readFile('./txt/start.txt', 'utf-8', (err, data)  => { 
 		console.log(data);
 	});
-	console.log('Will read file') 
+	console.log('Will read file');
 	
-/* this will run before the callback function. NodeJS will read the file in the background  
-   and won't block the code and will immediately move to the next line of code. 
-   Once everything is read it will return to the call back funcion to run.
-   
-   OUTPUT:
-	> node index.js
+/*
+OUTPUT:
+The log() funcion will run before the callback function. 
+NodeJS reads the file in the background; without blocking moves immediately to the next line. 
+Once everything is read it will return to the call back funcion to run.   
+
+> node index.js
 	Will read file
 	read-this
 */
@@ -160,10 +159,12 @@ fs.readFile('./txt/start.txt', 'utf-8', (err, data1)  => {
         console.log(data2);
         fs.readFile('./txt/append.txt', 'utf-8', (err, data3)  => { 
             console.log(data3);
-            // only err argument needed; use template string the data 
-               we want to write as an additional argument.
-            fs.writeFile('./txt/final.txt', `${data2}\n${data3}`, 'utf-
-8', err => {  
+			
+			// Write to file Asynchronosly:
+            // we want to write data2 and data3 to a file.
+			// the third argument (callback) will not return data, so we only need err argument;
+			
+            fs.writeFile('./txt/final.txt', `${data2}\n${data3}`, 'utf-8', err => {  
                 console.log('Your file has been written.');
             });
         });
