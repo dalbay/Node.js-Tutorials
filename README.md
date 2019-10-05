@@ -49,47 +49,52 @@ const fs = require('fs');
 
 #### Node Documentations:
 
-![NodeJS why and when](/images/nodeDoc.png)
+![NodeJS why and when](/images/nodeDoc.png)  
 <br/>
 
 
-### Reading and Writing Files
+### Reading and Writing Files  
 	
 #### Read from file:
 
 ![NodeJS why and when](/images/nodeReadWrite.png)
 
 ``` javascript
-const fs = require('fs');
-const textIn = fs.readFileSync('./txt/input.txt','utf-8');
-console.log(textIn);
-	Run it in node -> this will read and display the content of the input.txt file.
-	Write to file
-const fs = require('fs');
+// Read from file:
+	const fs = require('fs');
+	const textIn = fs.readFileSync('./txt/input.txt','utf-8');
+	console.log(textIn);
+// Test  it in node -> this will read and display the content of the input.txt file.
 
+// Write to file:
+	const fs = require('fs');
 // ES6 syntax:
-const textOut = `This is what we know about the avocato: ${textIn}.\nCreated on ${Date.now()}`;
+	const textOut = `This is what we know about the avocato: ${textIn}.\nCreated on ${Date.now()}`;
 // Previous Syntax without the backstrings:
 // 'this is: ' + textIn;
-fs.writeFileSync('./txt/output.txt',textOut);
-console.log('File written');
+	fs.writeFileSync('./txt/output.txt',textOut);
+	console.log('File written');
 
-```
+```  
+<br/>
+
 
 ### Blocking and Non-Blocking: Asynchronous Nature of Node.js
 
-- Non-Blocking I/O model –asynchronous read function - instead of blocking the one single thread this model does the heavy work in the background. Where it stays until it’s finished reading the data from the file.
-- We then register a callback function to be called once the data is available. All other users can perform their tasks in a single thread one after another while the file is still being read in the background. In PHP you get one thread for each user.
+- Non-Blocking I/O model (asynchronous read function) - won't block the one single thread; the heavy work is done in the background; where it stays until it’s finished reading the data from the file.
+- We then register a *callback function* to be called once the data is available.  
+  All other users can perform their tasks in a single thread one after another while the file is still being read in the background. In PHP you get one thread for each user.
 - A callback in our code does not make it automatically asynchronous. Passing functions in another functions is common in JavaScript. 
 ![NodeJS blocking none blocking](/images/nodeBlocking.png)
 
 #### Callback Hell 
-The callback model - functions is called once the one before has finished its work can quickly lead to some hard to read and manageable code. 
+The callback model - function is called once the one before has finished its work; this can quickly lead to some hard to read and manageable code. 
 ##### For example: 
-The second file read depends on the first one; than the third file read depends on the second one; and then the finally we want to use the final data to write as a result. This makes it hard to read and reason about. This problem is called *Callback Hell*. To solve this problem, we can use *ES6 Promises or ES8 async/await*. 
+The second file read depends on the first one; than the third file read depends on the second one; and then the finally we want to use the final data to write as a result. This makes it hard to read and reason about. This problem is called ***Callback Hell***. To solve this problem, we can use *ES6 Promises or ES8 async/await*. 
 ```javascript
 const fs = require('fs');
 
+// callback hell example:
 fs.writeFile('start.txt', 'utf-8', (err,data1) => {
     fs.writeFile(`${data1}.txt`,'utf-8',(err,data2) => {
         fs.readFile('append.txt','utf-8',(err,data3) => {
@@ -101,6 +106,7 @@ fs.writeFile('start.txt', 'utf-8', (err,data1) => {
 });
 ```
 -	Node was originally designed around callbacks and we still will be using them.
+<br/>
 
 ### Reading and Writing Files Asynchronously
 
