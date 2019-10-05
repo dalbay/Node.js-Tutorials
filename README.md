@@ -112,17 +112,24 @@ fs.writeFile('start.txt', 'utf-8', (err,data1) => {
 
 ##### Example:
 ```javascript
-const fs = require('fs');
-//third parameter is a callback function() with two arguments; (err if there was one and the actual data itself.)
-fs.readFile('./txt/start.txt', 'utf-8', (err, data)  => { 
-    console.log(data);
-});
-console.log('Will read file') // this will run before the callback function. NodeJS will read the file in the background and won't block the code and will immediately move to the next line of code. Once everything is read it will return to the call back funcion to run.
-```
-##### OUTPUT:
-PS C:\Users\aygun\OneDrive\Documents\Udemy\The Complete Bootcamp2019\complete-node-bootcamp-master\complete-node-bootcamp-master\1-node-farm\starter> node index.js
+	const fs = require('fs');
+// the third parameter is a callback function() with two arguments; (err if there was one, and the actual data itself.)
+	fs.readFile('./txt/start.txt', 'utf-8', (err, data)  => { 
+		console.log(data);
+	});
+	console.log('Will read file') 
+/* this will run before the callback function. NodeJS will read the file in the background  
+   and won't block the code and will immediately move to the next line of code. 
+   Once everything is read it will return to the call back funcion to run.
+   
+   OUTPUT:
+   > node index.js
 Will read file
 read-this
+*/
+```
+
+
 ##### Example: Steps that depend on the result of the previous step.
 ```javascript
 const fs = require('fs');
