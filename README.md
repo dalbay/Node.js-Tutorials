@@ -8,8 +8,10 @@
  
  After you install node.js on your local machine test it in CMD – node -v (should display the version) 
  ```html
- C:\Users\aygun>node -v         ->  v10.16.3
- ```
+ C:\Users\aygun>node -v         ->  v10.16.3 
+ ``` 
+ <br/>
+ 
 ### Introduction to Node.js and NPM
 
 -	Node.js is a JavaScript Runtime build on Google’s open source V8 JavaScript Engine. 
@@ -17,6 +19,8 @@
 -	The V8 Engine executes the code – parse it and runs it in Node.js
 
  ![NodeJS and V8](/images/nodeV8.png)
+ <br/> 
+ 
 
 ### What is Node.js
 ![NodeJS why and when](/images/nodeWhy.png)
@@ -35,19 +39,12 @@
 
 -	Start a new .js file in the root directory
 -	Type in some JavaScript code.
--	To run this file in the browser we would have to attach it to an html file;
-but this is how we could run it in Node - 
-In the Terminal -> command node and the name of the file -> node index.js
-
-``` javascript
-const hello = "Hello World";
-console.log(hello);
-
-```
-
--	More advanced features of Node would be reading files from the files system. 
-In order to that we would need to use a Node Module – all kind of functionality is stored in Modules; in this case it would be the fs module (file stream). 
-To make use of these modules we require them into our code and then store the result of the requiring function in a variable.
+-	To run this file in the browser we would have to attach it to an html file;  
+    but this is how we could run JavaScript in Node:  
+	- In the Terminal -> command node and the name of the file.
+-	More advanced features of Node would be reading files from the files system for example.  
+    In order to that we would need to use a ***Node Module***	– all kind of functionality is stored in Modules; in this case it would be the *fs module (file stream)*.  
+	To make use of these modules we ***require*** them into our code and then store the result of the requiring function in a variable.
 const fs = require('fs');
 
 #### Node Documentations:
