@@ -136,10 +136,10 @@ fs.writeFile('start.txt', 'utf-8', (err,data1) => {
 ```
 
 
-#### Example: Steps that depend on the result of the previous step.
+#### Example: - Steps that depend on the result of the previous step.
 ```javascript
 const fs = require('fs');
-//third param is a callback function with two arguments; err if there was one and the acutal data itself.
+
 fs.readFile('./txt/start.txt', 'utf-8', (err, data1)  => { 
     fs.readFile(`./txt/${data1}.txt`, 'utf-8', (err, data2)  => { 
         console.log(data2);
@@ -148,15 +148,13 @@ fs.readFile('./txt/start.txt', 'utf-8', (err, data1)  => {
         });
     });
 });
-```
-PS C:\Users\aygun\OneDrive\Documents\Udemy\The Complete Bootcamp2019\complete-node-bootcamp-master\complete-node-bootcamp-master\1-node-farm\starter> node index.js
-The avocado �🥑 is also used as the base for the Mexican dip known as guacamole, as well as a spread on corn tortillas or toast, served with spice
-APPENDIX: Generally, avocados �🥑 are served raw, but some cultivars can be cooked for a short time without becoming bitter
+```  
 
-##### Example: we want to write the last two strings into a file.
+
+#### Example: - here we want to write the last two strings into a file.
 ```javascript
 const fs = require('fs');
-//third param is a callback function with two arguments; err if there was one and the acutal data itself.
+
 fs.readFile('./txt/start.txt', 'utf-8', (err, data1)  => { 
     if(err) return console.log('ERROR');   //error handler 
     fs.readFile(`./txt/${data1}.txt`, 'utf-8', (err, data2)  => { 
