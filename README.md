@@ -90,11 +90,13 @@ const fs = require('fs');
 #### Callback Hell 
 The callback model - function is called once the one before has finished its work; this can quickly lead to some hard to read and manageable code. 
 #### Example:
-The second file read depends on the first one; than the third file read depends on the second one; and then the finally we want to use the final data to write as a result. This makes it hard to read and reason about. This problem is called ***Callback Hell***. To solve this problem, we can use *ES6 Promises or ES8 async/await*. 
+The second file read depends on the first one; than the third file read depends on the second one; and then the finally we want to use the final data to write as a result.  
+This makes it hard to read and reason about. This problem is called ***Callback Hell***. To solve this problem, we can use *ES6 Promises or ES8 async/await*. 
 ```javascript
 const fs = require('fs');
 
 // callback hell example:
+
 fs.writeFile('start.txt', 'utf-8', (err,data1) => {
     fs.writeFile(`${data1}.txt`,'utf-8',(err,data2) => {
         fs.readFile('append.txt','utf-8',(err,data3) => {
@@ -110,27 +112,31 @@ fs.writeFile('start.txt', 'utf-8', (err,data1) => {
 
 ### Reading and Writing Files Asynchronously
 
-##### Example:
+#### Example:
 ```javascript
 	const fs = require('fs');
-// the third parameter is a callback function() with two arguments; (err if there was one, and the actual data itself.)
+	
+// the third parameter is a callback function() with two arguments;  
+// (err if there was one, and the actual data itself.)
+
 	fs.readFile('./txt/start.txt', 'utf-8', (err, data)  => { 
 		console.log(data);
 	});
 	console.log('Will read file') 
+	
 /* this will run before the callback function. NodeJS will read the file in the background  
    and won't block the code and will immediately move to the next line of code. 
    Once everything is read it will return to the call back funcion to run.
    
    OUTPUT:
-   > node index.js
-Will read file
-read-this
+	> node index.js
+	Will read file
+	read-this
 */
 ```
 
 
-##### Example: Steps that depend on the result of the previous step.
+#### Example: Steps that depend on the result of the previous step.
 ```javascript
 const fs = require('fs');
 //third param is a callback function with two arguments; err if there was one and the acutal data itself.
