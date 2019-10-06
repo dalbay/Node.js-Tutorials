@@ -245,14 +245,14 @@ server.listen(8000, '127.0.0.1', () => {
 });
 ```
 ##### Run the server:
-PS C:\Users\aygun\OneDrive\Documents\Udemy\The Complete Bootcamp2019\complete-node-bootcamp-master\complete-node-bootcamp-master\1-node-farm\starter> node index.js
+> node index.js  
 Listening to requests on port 8000
 
 ##### OUTPUT:
 ![NodeJS Routing display1](/images/nodeRouting1.png)
 ![NodeJS Routing display2](/images/nodeRouting2.png)
 
-When there is a request that we that wasn’t handled in the code, the server will not respond, and the search wheel won’t stop spinning. To handle this problem, add another route within the else statement.
+When there is a request that wasn’t handled in the code, the server will not respond, and the search wheel won’t stop spinning. To handle this problem, add another route within the else statement.
 ```javascript
 const server = http.createServer((req,res) => { 
     const pathName =  req.url;
@@ -269,13 +269,13 @@ const server = http.createServer((req,res) => {
  A 404 is an http status code; so, we can also add the http status to the response.
 ```javascript 
     }else{
-        res.writeHead(404);     You can examine the server response in Dev tools(inspect). 
+        res.writeHead(404);      //You can examine the server response in Dev tools(inspect). 
         res.end('Page not found!')
     }
 ```
-A HttpHeader is a piece of information about the response *(metadata about the response)*. We can use writeHead () to send back headers by adding objects as a parameter to the method. One of the standard headers is to inform the browser of the Content Type. When we set to Content Type to text/html, the browser will now expect some html.
+A HttpHeader is a piece of information about the response *(metadata about the response)*. We can use ```writeHead()```to send back headers by adding objects as a parameter to the method. One of the standard headers is to inform the browser of the Content Type. When we set to Content Type to text/html, the browser will now expect some html.
 We can also add our own headers in here and pass on data about the response.
-##### Example:
+#### Example:
 ```javascript
 const server = http.createServer((req,res) => { 
     const pathName =  req.url;
@@ -294,12 +294,14 @@ const server = http.createServer((req,res) => {
 });
 ```
 
-![NodeJS Routing display3](/images/nodeRouting3.png)
+![NodeJS Routing display3](/images/nodeRouting3.png)  
+<br/>
 
 ### Building a (Very) Simple API
 
-- API – A service from which we can request some data. 
-In this example some data that we are offering in the application – The data is in our json file. JSON is a simple text format that looks like a JavaScript Object. Each object inside this array has keys which must be of type string and a values attached to each key it. This is the data that the API will send to the client when requested.
+- **API** – A service from which we can request some data.  
+  In this example we are offering data from json file. This is the data that the API will send to the client when requested.  
+  **JSON** is a simple text format that looks like a JavaScript Object. Each object inside this array has keys which must be of type string and a values attached to each key it. 
 ##### Example: 
 First add another route to our project and a simple placeholder for the response.
 ```javascript
