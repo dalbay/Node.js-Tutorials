@@ -176,30 +176,33 @@ The arrow functions is an ES6 syntax. The difference between a standard function
 	function(err, data1){
 	  //a function always gets the this keyword. 
 	}
-```
+```  
+<br/>
+
 ### Creating a Simple Web Server
--	Accepting request and sending back responses – Networking capability
--	For that we need to include another module - HTTP
+- Accepting request and sending back responses. - *Networking capability*
+- Include the **HTTP-module**
 ```javascript
 const http = require('http');
 ```
 
-- Creating the Server is the first part.
+- **Create the Server** - the first part.
 ```javascript
-http.createServer((req,res) => { // takes in two args, request variable and response variable
-    res.end('Hello from the server'); // (The response and request objects have tools that we can use )
+http.createServer((req,res) => {       // takes two args, request and response variable 
+    res.end('Hello from the server');  // use tools of the request/response object 
 });
 ```
-Listening the incoming request is the second part. 
-In order to do that is to save the result of createServer to a variable
+- **Listen incoming request** - the second part.  
+  In order to do that, save the result of ```createServer``` to a variable
 ```javascript
-const server = http.createServer((req,res) => { 
-    res.end('Hello from the server'); 
-});
-// use that server an on that call listen.
-server.listen(8000, '127.0.0.1', () => {
-    console.log('Listening to requests on port 8000');
-});
+// create server
+	const server = http.createServer((req,res) => { 
+		res.end('Hello from the server'); 
+	});
+// use the server listen method()
+	server.listen(8000, '127.0.0.1', () => {
+		console.log('Listening to requests on port 8000');
+	});
 ```
 	Run the node application; We can get to this URL on port 8000 on our computer 
 ##### Output:
