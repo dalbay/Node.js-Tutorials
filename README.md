@@ -181,7 +181,7 @@ The arrow functions is an ES6 syntax. The difference between a standard function
 
 ### Creating a Simple Web Server
 - Accepting request and sending back responses. - *Networking capability*
-- Include the **HTTP-module**
+- Include the **http-module**
 ```javascript
 const http = require('http');
 ```
@@ -204,9 +204,9 @@ http.createServer((req,res) => {       // takes two args, request and response v
 		console.log('Listening to requests on port 8000');
 	});
 ```
-	Run the node application; We can get to this URL on port 8000 on our computer 
+Run the node application; We can get to this URL on port 8000 on our computer 
 ##### Output:
-PS C:\Users\aygun\OneDrive\Documents\Udemy\The Complete Bootcamp2019\complete-node-bootcamp-master\complete-node-bootcamp-master\1-node-farm\starter> node index.js
+> node index.js
 Listening to requests on port 8000
 ![NodeJS Server display](/images/nodeServer.png)
 
