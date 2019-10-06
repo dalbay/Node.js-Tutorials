@@ -382,8 +382,10 @@ A better solution would be to read the file once in the beginning and then each 
 Take out the fs.readFile() method from the code and use the *synchronous version for the read function - fs.readFileSync()*, and place it in the top level. *Top Level code is only executed once in the beginning*.
 <br/>
 
-In other words: The Callback function ```http.createServer((req,res) => { … });*  )```  is the code that is executed every time a user makes a new request. The code that is outside the callback function, the top-level code, is only executed once when we start the program. Therefore, a better approach is to cut out the file reader from the callback function and place a synchronous file-reader at the top-level.
-Update your code to:
+In other words:  
+The Callback function ```http.createServer((req,res) => { … });*  )```  is the code that is executed every time a user makes a new request. The code that is outside the callback function, the top-level code, is only executed once when we start the program. Therefore, a better approach is to cut out the file reader from the callback function and place a synchronous file reader at the top-level.  
+Updated code:  
+
 ```javascript 
 // top-level code - use synchronous read function.
 	const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8');
@@ -391,14 +393,13 @@ Update your code to:
 	
 	const server = http.createServer((req,res) => { 
 		const pathName =  req.url;
-
 		if(pathName === '/' || pathName === '/overview'){
 			res.end('This is the OVERVIEW');
 		}else if(pathName === '/product'){
 			res.end('This is the PRODUCT');
 		}else if(pathName === '/api'){		                   
 			res.writeHead(200,{ 'Content-type': 'application/json'});
-			res.end(data); 	 		// sending back data from top-level code.
+			res.end(data); 	 		      // sending back data from top-level.
 		}else{
 			res.writeHead(404, {
 				'Content-type':'text/html',
