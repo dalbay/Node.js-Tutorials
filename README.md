@@ -421,14 +421,10 @@ Updated code:
 - Each product will also have its own detail page.  
 <br/>
 - Here are the fields that we have in our data.json file:  
-
 ![NodeJS json fields](./images/nodeJson.png)  
 
-
-The Overview page:  
-
- ![NodeJS UI1](/images/nodeTemp1.png)  
-(. . . adding placeholders to the overview.html file)
+- The template-product page:  
+  Add placeholders for these fields; they should be eazy to recognized; for instance here we use {%...%}
 ```html
           <span class="product__emoji product__emoji--5">{%IMAGE%}</span>
           <span class="product__emoji product__emoji--6">{%IMAGE%}</span>
@@ -448,7 +444,7 @@ The Overview page:
 - Next up modify the overview.html. (the opening page that displays all products).
  ![NodeJS UI1](/images/nodeTemp2.png)
 The carts-container in this file includes a figure tag for each product. Since we don’t know how many products we have, we can’t tell how many figure tags we need initially. 
-Create a template-card that will hold only one card (one figure element/ one product) - template-card.html. Copy the figure element from template-overview.html and past it here.
+Create a template-card that will hold only one card (one figure element - one product) called template-card.html. Copy the figure element from template-overview.html and past it here.
 ```html
 <figure class="card">
     <div class="card__emoji">{%IMAGE%}{%IMAGE%}</div>
@@ -468,7 +464,7 @@ Create a template-card that will hold only one card (one figure element/ one pro
     </a>
   </figure>
  ```
-- Delete the cards(figure elements from the template-overview.html) and create a placeholder in here - {%PRODUCT-CARDS%}. This is where the products will be added to dynamically.
+- Delete the all cards(figure elements from the template-overview.html) and create a placeholder in here - {%PRODUCT-CARDS%}. This is where the products will be added to dynamically.
 ```html
   <body>
     <div class="container">
