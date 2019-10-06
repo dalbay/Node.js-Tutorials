@@ -299,7 +299,9 @@ const server = http.createServer((req,res) => {
 
 ### Building a (Very) Simple API
 
-- **API** – A service from which we can request some data.  
+- **API** – A service from which we can request some data. 
+<br/>
+ 
 #### Example: 
 In this example we are offering data about the products from a json file. This is the data that the API will send to the client when requested.  
 **JSON** is a simple text format that looks like a JavaScript Object. Each object inside this array has a key of type string, and a value attached to it.  
@@ -336,26 +338,27 @@ const server = http.createServer((req,res) => {
   -  ```fs.readFile('./dev-data/data.json')```
   The dot (.) in node referse to the directory from which we run the node command in the terminal. If we run the node command somewhere else the dot would mean something else. (So for example if we started node from the desktop then the dot would mean the desktop).  
   Therefore, this approach is not ideal. 
-- A better way locate the script that we want to execute in the files system :  
+- A better way to locate the script that we want to execute in the files system :  
   - ***```__dirname```*** variable  
-  All node.js scripts get access to this variable. This variable always translates to the directory in which the script is located.(Note that only exception for this rule is when used with the required function).  
+  All node.js scripts get access to this variable.  
+  This variable always translates to the directory in which the script is located.(Note that only exception for this rule is when used with the required function).  
   To access the *__dirname* variable use a template string.  
   When sending back the data we need to tell the browser the ```Content-type```. In our case it’s JSON. 
 ```javascript
 const fs = require('fs');
 const http = require('http');
+
 const server = http.createServer((req,res) => { 
     const pathName =  req.url;
-
     if(pathName === '/' || pathName === '/overview'){
         res.end('This is the OVERVIEW');
     }else if(pathName === '/product'){
         res.end('This is the PRODUCT');
     }else if(pathName === '/api'){				    
-        fs.readFile(`${__dirname}/dev-data/data.json`,'utf-8', (err, data) => {   // read the file 
-            const productData = JSON.parse(data);   // tells browser that we are sending back json
-            res.writeHead(200,{ 'Content-type': 'application/json'});  // header object
-            res.end(data);   				// the end() function sends back a string
+        fs.readFile(`${__dirname}/dev-data/data.json`,'utf-8', (err, data) => {     // read the file 
+            const productData = JSON.parse(data);    
+            res.writeHead(200,{ 'Content-type': 'application/json'});               // header object
+            res.end(data);   				               // the end() function sends back a string
         });
     }else{
         res.writeHead(404, {
