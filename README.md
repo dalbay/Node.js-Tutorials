@@ -418,11 +418,9 @@ Updated code:
 - Create an html template (overview.html file) that will display the data that is being read from a json file. 
 - The fields that are read from the json file are dynamically place on the template.  
   To do this, put a placeholder for the values of these fields inside the html and replace them later with actual data.
-- Each product will also have its own detail page.  
-<br/>
-- Here are the fields that we have in our data.json file:  
-![NodeJS json fields](./images/nodeJson.png)  
-
+- Each product will also have its own detail page.
+- Here are the fields that we have in our data.json file:
+  ![json data image](/images/nodeJson.png)
 - The template-product page:  
   Add placeholders for these fields; they should be eazy to recognized; for instance here we use {%...%}
 ```html
