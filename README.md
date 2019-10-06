@@ -300,11 +300,14 @@ const server = http.createServer((req,res) => {
 ### Building a (Very) Simple API
 
 - **API** – A service from which we can request some data.  
-  In this example we are offering data from json file. This is the data that the API will send to the client when requested.  
-  **JSON** is a simple text format that looks like a JavaScript Object. Each object inside this array has keys which must be of type string and a values attached to each key it. 
 ##### Example: 
-First add another route to our project and a simple placeholder for the response.
+In this example we are offering data from json file. This is the data that the API will send to the client when requested.  
+**JSON** is a simple text format that looks like a JavaScript Object. Each object inside this array has keys which must be of type string and a values attached to each key it.  
+- First add another route to our project and a simple placeholder for the response.
 ```javascript
+const http = require('http');
+const url = require('url');
+
 const server = http.createServer((req,res) => { 
     const pathName =  req.url;
 
