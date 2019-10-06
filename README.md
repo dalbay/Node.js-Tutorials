@@ -203,14 +203,19 @@ http.createServer((req,res) => {       // takes two args, request and response v
 	server.listen(8000, '127.0.0.1', () => {
 		console.log('Listening to requests on port 8000');
 	});
-```
-Run the node application; We can get to this URL on port 8000 on our computer 
-##### Output:
+	
+/*
 > node index.js
 Listening to requests on port 8000
+*/
+```  
+##### Output: 
+Run the node application; We can get to this URL on port 8000 on our computer :
 ![NodeJS Server display](/images/nodeServer.png)
 
-*Note: To stop the server running => Ctrl + C*
+*Note: To stop the server running => Ctrl + C*  
+<br/>
+
 
 ### Routing
 	For routing use the ‘url’ model.
