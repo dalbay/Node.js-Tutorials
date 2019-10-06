@@ -379,10 +379,10 @@ Restart the server, and add /api to url; this will return the data about the pro
 Each time a user makes that API request(/api), the server will read the file to send it back.  
 A better solution would be to read the file once in the beginning and then each time a user hits this route, simply send back the data.  
 <br/>
-
 Take out the fs.readFile() method from the code and use the *synchronous version for the read function - fs.readFileSync()*, and place it in the top level. *Top Level code is only executed once in the beginning*.
 <br/>
-In other words: The Callback function ```http.createServer((req,res) => { … });*  )```  is the code that is executed every time a user makes a new request. The code that is outside the callback function, the top-level code, is only executed once when we start the program.
+
+In other words: The Callback function ```http.createServer((req,res) => { … });*  )```  is the code that is executed every time a user makes a new request. The code that is outside the callback function, the top-level code, is only executed once when we start the program. Therefore, a better approach is to cut out the file reader from the callback function and place a synchronous file-reader at the top-level.
 Update your code to:
 ```javascript 
 // top-level code - use synchronous read function.
