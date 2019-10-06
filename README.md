@@ -300,7 +300,7 @@ const server = http.createServer((req,res) => {
 ### Building a (Very) Simple API
 
 - **API** – A service from which we can request some data.  
-##### Example: 
+#### Example: 
 In this example we are offering data about the products from a json file. This is the data that the API will send to the client when requested.  
 **JSON** is a simple text format that looks like a JavaScript Object. Each object inside this array has keys which must be of type string and a values attached to each key it.  
 - First add another route(/api) to our project and a simple placeholder for the response for now.
@@ -360,36 +360,39 @@ const server = http.createServer((req,res) => {
     }
 });
 ```  
-Restart the server and type in the 
-![NodeJS API](/images/nodeAPI.png)
+Restart the server and type in /api in the browser. This will return the data about the products:
+![NodeJS API](/images/nodeAPI.png)  
 
-##### The issue with this code:
-Each time a user makes that API request, the server will read the file to send it back. A better solution would be if a user hits this route to send back the data without having to read it every time. In this case we will use the synchronous version for the read function, which won’t be a problem because we can place it in the top level. Top Level code is only executed once in the beginning. 
+
+#### The issue with this code:
+Each time a user makes that API request(/api), the server will read the file to send it back. A better solution would be to read the file once in the beginning and then each time a user hits this route, simply send back this data.  
+Take out the fs.readFile() method from the code and use the *synchronous version for the read function - fs.readFileSync()*, and place it in the top level. *Top Level code is only executed once in the beginning*.  
 The Callback function  (   *http.createServer((req,res) => { … });*  )  is the code that is executed every time a user makes a new request. The code that is outside the callback function, the top-level code, is only executed once when we start the program. 
 *(We need to have a good understanding of which code is blocking and why.)*	
 To solve this issue update your code to :
-```javascript
-const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8');
-const dataObj = JSON.parse(data);				      	          // top-level code
+```javascript 
+// top-level code - use synchronous read function.
+	const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8');
+	const dataObj = JSON.parse(data);	
+	
+	const server = http.createServer((req,res) => { 
+		const pathName =  req.url;
 
-const server = http.createServer((req,res) => { 
-    const pathName =  req.url;
-
-    if(pathName === '/' || pathName === '/overview'){
-        res.end('This is the OVERVIEW');
-    }else if(pathName === '/product'){
-        res.end('This is the PRODUCT');
-    }else if(pathName === '/api'){		                      add another route
-        res.writeHead(200,{ 'Content-type': 'application/json'});
-        res.end(data); 							       sending back json
-    }else{
-        res.writeHead(404, {
-            'Content-type':'text/html',
-            'my-own-header':'hello-world'
-        });
-        res.end('<h1>Page not found!</h1>')
-    }
-});
+		if(pathName === '/' || pathName === '/overview'){
+			res.end('This is the OVERVIEW');
+		}else if(pathName === '/product'){
+			res.end('This is the PRODUCT');
+		}else if(pathName === '/api'){		                      add another route
+			res.writeHead(200,{ 'Content-type': 'application/json'});
+			res.end(data); 							       sending back json
+		}else{
+			res.writeHead(404, {
+				'Content-type':'text/html',
+				'my-own-header':'hello-world'
+			});
+			res.end('<h1>Page not found!</h1>')
+		}
+	});
 
 ```
 
