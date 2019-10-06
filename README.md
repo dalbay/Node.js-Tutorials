@@ -331,6 +331,7 @@ const server = http.createServer((req,res) => {
   - Read data from the data.json file, then
   - parse JSON into JavaScript, and then 
   - send back the result to the client.  
+  
 When a file is requested, to find its location in the file system, we could access it with this type of code: ```fs.readFile('./dev-data/data.json')```. The dot (.) in node referse to the directory from which we run the node command in the terminal. If we run the node command some where else the dot would mean something else. (So for example if we started node from the desktop then the dot would mean the desktop).  
 Therefore, this approach is not ideal. A better way is to use ***__dirname*** variable, which will locate the script that we want to execute. All node.js scripts get access to this variable. This variable always translates to the directory in which the script is located.(Note that only exception for this rule is when used with the required function).    
 To access the *__dirname* variable use a template string.  
