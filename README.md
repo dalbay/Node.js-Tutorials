@@ -171,9 +171,11 @@ fs.readFile('./txt/start.txt', 'utf-8', (err, data1)  => {
     });
 });
 ```
-The arrow functions syntax is ES6. This is how it would look like without the arrow function:
+The arrow functions is an ES6 syntax. The difference between a standard function syntax is that the arrow function doesn't get its own this keyword. It uses the parents this keyword which is called lexical this keyword. The standard function syntax:
 ```javascript
-function(err, data1){ //a function always gets the this keyword. }
+	function(err, data1){
+	  //a function always gets the this keyword. 
+	}
 ```
 ### Creating a Simple Web Server
 -	Accepting request and sending back responses – Networking capability
