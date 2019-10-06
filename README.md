@@ -218,19 +218,19 @@ Run the node application; We can get to this URL on port 8000 on our computer :
 
 
 ### Routing
-	For routing use the ‘url’ model.
+- Include the **url-model**
 ```javascript
 const url = require('url');
 ```
 *(Note: To select multiple word phrases in visual studio, highlight the word and press Ctrl + D)*
 
-##### Example: we will check the path names and respond to that particular url
+#### Example: - check path names and respond to that particular url
 ```javascript
 const http = require('http');
 const url = require('url');
 
 const server = http.createServer((req,res) => { 
-    const pathName =  res.url;                      requested url from the page
+    const pathName =  res.url;                      // requested url from the page
     console.log(res,url);
     res.end('hello from the server');
     if(pathName === '/' || pathName === '/overview'){
