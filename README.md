@@ -302,8 +302,8 @@ const server = http.createServer((req,res) => {
 - **API** – A service from which we can request some data.  
 #### Example: 
 In this example we are offering data about the products from a json file. This is the data that the API will send to the client when requested.  
-**JSON** is a simple text format that looks like a JavaScript Object. Each object inside this array has keys which must be of type string and a values attached to each key it.  
-- First add another route(/api) to our project and a simple placeholder for the response for now.
+**JSON** is a simple text format that looks like a JavaScript Object. Each object inside this array has a key of type string, and a value attached to it.  
+- First add another route(/api) to our project, and a simple placeholder for the response.
 ```javascript
 const http = require('http');
 const url = require('url');
@@ -315,8 +315,8 @@ const server = http.createServer((req,res) => {
         res.end('This is the OVERVIEW');
     }else if(pathName === '/product'){
         res.end('This is the PRODUCT');
-    }else if(pathName === '/api'){
-        res.end('API');
+    }else if(pathName === '/api'){        // adding another route and a sample placeholder.
+        res.end('This is an API');
     }else{
         res.writeHead(404, {
             'Content-type':'text/html',
