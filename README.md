@@ -345,13 +345,11 @@ const server = http.createServer((req,res) => {
         res.end('This is the OVERVIEW');
     }else if(pathName === '/product'){
         res.end('This is the PRODUCT');
-    }else if(pathName === '/api'){
-		// if '/api' route was requested, read the file 
+    }else if(pathName === '/api'){				    // if '/api' route was requested, read the file 
         fs.readFile(`${__dirname}/dev-data/data.json`,'utf-8', (err, data) => {
-            const productData = JSON.parse(data);
-			// tell browser that we are sending back json
+            const productData = JSON.parse(data);   // tells browser that we are sending back json
             res.writeHead(200,{ 'Content-type': 'application/json'});  // header object
-            res.end(data);   // the end() function will send back a string
+            res.end(data);   						// the end() function will send back a string
         });
     }else{
         res.writeHead(404, {
@@ -372,7 +370,7 @@ The Callback function  (   *http.createServer((req,res) => { … });*  )  is the
 To solve this issue update your code to :
 ```javascript
 const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8');
-const dataObj = JSON.parse(data);				      	             top-level code
+const dataObj = JSON.parse(data);				      	          // top-level code
 
 const server = http.createServer((req,res) => { 
     const pathName =  req.url;
