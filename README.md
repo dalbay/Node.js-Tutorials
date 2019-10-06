@@ -355,10 +355,10 @@ const server = http.createServer((req,res) => {
     }else if(pathName === '/product'){
         res.end('This is the PRODUCT');
     }else if(pathName === '/api'){				    
-        fs.readFile(`${__dirname}/dev-data/data.json`,'utf-8', (err, data) => {     // read the file 
+        fs.readFile(`${__dirname}/dev-data/data.json`,'utf-8', (err, data) => {    // read the file 
             const productData = JSON.parse(data);    
-            res.writeHead(200,{ 'Content-type': 'application/json'});               // header object
-            res.end(data);   				               // the end() function sends back a string
+            res.writeHead(200,{ 'Content-type': 'application/json'});              // header object
+            res.end(data);   				                                       // this sends back a string
         });
     }else{
         res.writeHead(404, {
@@ -369,12 +369,17 @@ const server = http.createServer((req,res) => {
     }
 });
 ```  
-Restart the server and type in /api in the browser. This will return the data about the products:
+Restart the server, and add /api to url; this will return the data about the products:
 ![NodeJS API](/images/nodeAPI.png)  
+<br/>
+
 
 
 #### The issue with this code:
-Each time a user makes that API request(/api), the server will read the file to send it back. A better solution would be to read the file once in the beginning and then each time a user hits this route, simply send back this data.  
+Each time a user makes that API request(/api), the server will read the file to send it back.  
+A better solution would be to read the file once in the beginning and then each time a user hits this route, simply send back the data.  
+<br/>
+
 Take out the fs.readFile() method from the code and use the *synchronous version for the read function - fs.readFileSync()*, and place it in the top level. *Top Level code is only executed once in the beginning*.
 <br/>
 In other words: The Callback function ```http.createServer((req,res) => { … });*  )```  is the code that is executed every time a user makes a new request. The code that is outside the callback function, the top-level code, is only executed once when we start the program.
