@@ -420,14 +420,15 @@ Updated code:
   To do this, put a placeholder for the values of these fields inside the html and replace them later with actual data.
 - Each product will also have its own detail page.  
 <br/>
+- Here are the fields that we have in our data.json file:
+ ![NodeJS json fields](/images/nodeJson.png)  
 
-Here are the fields that we have in our json file;
-  - "id": - "productName": - "image": - "from": - "nutrients": - "quantity": - "price": - "organic": - "description":  
-  
-- Details page - Add the placeholders to the file:
- ![NodeJS UI1](/images/nodeTemp1.png)
-  - (. . . this is how the placeholders would look like)
- ```html
+
+The Overview page:  
+
+ ![NodeJS UI1](/images/nodeTemp1.png)  
+(. . . adding placeholders to the overview.html file)
+```html
           <span class="product__emoji product__emoji--5">{%IMAGE%}</span>
           <span class="product__emoji product__emoji--6">{%IMAGE%}</span>
           <span class="product__emoji product__emoji--7">{%IMAGE%}</span>
