@@ -301,9 +301,9 @@ const server = http.createServer((req,res) => {
 
 - **API** – A service from which we can request some data.  
 ##### Example: 
-In this example we are offering data from json file. This is the data that the API will send to the client when requested.  
+In this example we are offering data about the products from a json file. This is the data that the API will send to the client when requested.  
 **JSON** is a simple text format that looks like a JavaScript Object. Each object inside this array has keys which must be of type string and a values attached to each key it.  
-- First add another route to our project and a simple placeholder for the response.
+- First add another route(/api) to our project and a simple placeholder for the response for now.
 ```javascript
 const http = require('http');
 const url = require('url');
@@ -330,9 +330,11 @@ const server = http.createServer((req,res) => {
 - Next, 
   - Read data from the data.json file, then
   - parse JSON into JavaScript, and then 
-  - send back the result to the client.
-To find where the current file is located - a path that starts with a dot changes depending on where we run node. A better way is to use __dirname variable, which will locate the script that we want to execute. For that make use of a template string and use the variable. (The required functions are an exception to this rule.)
-When sending back the data we need to we need to tell the browser the content type. In our case it’s JSON. 
+  - send back the result to the client.  
+When a file is requested, to find its location in the file system, we could access it with this type of code: ```fs.readFile('./dev-data/data.json')```. The dot (.) in node referse to the directory from which we run the node command in the terminal. If we run the node command some where else the dot would mean something else. (So for example if we started node from the desktop then the dot would mean the desktop).  
+Therefore, this approach is not ideal. A better way is to use ***__dirname*** variable, which will locate the script that we want to execute. All node.js scripts get access to this variable. This variable always translates to the directory in which the script is located.(Note that only exception for this rule is when used with the required function).    
+To access the *__dirname* variable use a template string.  
+When sending back the data we need to tell the browser the ```Content-type```. In our case it’s JSON. 
 ```javascript
 const fs = require('fs');
 const http = require('http');
@@ -344,10 +346,12 @@ const server = http.createServer((req,res) => {
     }else if(pathName === '/product'){
         res.end('This is the PRODUCT');
     }else if(pathName === '/api'){
+		// if '/api' route was requested, read the file 
         fs.readFile(`${__dirname}/dev-data/data.json`,'utf-8', (err, data) => {
             const productData = JSON.parse(data);
-            res.writeHead(200,{ 'Content-type': 'application/json'});
-            res.end(data);
+			// tell browser that we are sending back json
+            res.writeHead(200,{ 'Content-type': 'application/json'});  // header object
+            res.end(data);   // the end() function will send back a string
         });
     }else{
         res.writeHead(404, {
@@ -357,7 +361,8 @@ const server = http.createServer((req,res) => {
         res.end('<h1>Page not found!</h1>')
     }
 });
-```
+```  
+Restart the server and type in the 
 ![NodeJS API](/images/nodeAPI.png)
 
 ##### The issue with this code:
