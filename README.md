@@ -409,29 +409,24 @@ Updated code:
 		}
 	});
 
-```
+```  
+<br/>
+
 
 ### HTML Templating: Building the Templates (UI)
 
-- Create a template that will hold actual data that is being read from a json file. 
-- The fields that are read from the json file are dynamically place on the template. To do this, put a placeholder for the values of these fields inside the html and replace them later with actual data.
-- The overview.html file will display all the products and then each product will have its own detail page. 
+- Create an html template (overview.html file) that will display the data that is being read from a json file. 
+- The fields that are read from the json file are dynamically place on the template.  
+  To do this, put a placeholder for the values of these fields inside the html and replace them later with actual data.
+- Each product will also have its own detail page.  
+<br/>
+
 Here are the fields that we have in our json file;
-  - "id": 
-  -    "productName": 
-  -    "image": 
-  -  "from": 
-  -  "nutrients": 
-  - "quantity": 
-  -  "price": 
-  -  "organic": 
-  -  "description": 
-
-- Begin by modifying the product.html file (the details page)
+  - "id": - "productName": - "image": - "from": - "nutrients": - "quantity": - "price": - "organic": - "description":  
+  
+- Details page - Add the placeholders to the file:
  ![NodeJS UI1](/images/nodeTemp1.png)
-
-	Change the name of the html file and keep the original in case you mess up the html. (product.html to template-product.html). Add the placeholders inside the file:
-- (. . . here is just a part of the html file as an example how the placeholders look like;)
+  - (. . . this is how the placeholders would look like)
  ```html
           <span class="product__emoji product__emoji--5">{%IMAGE%}</span>
           <span class="product__emoji product__emoji--6">{%IMAGE%}</span>
@@ -447,9 +442,6 @@ Here are the fields that we have in our json file;
           <p><span class="emoji-left">🏷</span>{%PRICE%}$</p>
         </div>
 ```
-- . . .
- 
-
 
 - Next up modify the overview.html. (the opening page that displays all products).
  ![NodeJS UI1](/images/nodeTemp2.png)
