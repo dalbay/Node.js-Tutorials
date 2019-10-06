@@ -420,8 +420,9 @@ Updated code:
   To do this, put a placeholder for the values of these fields inside the html and replace them later with actual data.
 - Each product will also have its own detail page.  
 <br/>
-- Here are the fields that we have in our data.json file:
- ![NodeJS json fields](/images/nodeJson.png)  
+- Here are the fields that we have in our data.json file:  
+
+![NodeJS json fields](./images/nodeJson.png)  
 
 
 The Overview page:  
