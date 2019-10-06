@@ -345,11 +345,11 @@ const server = http.createServer((req,res) => {
         res.end('This is the OVERVIEW');
     }else if(pathName === '/product'){
         res.end('This is the PRODUCT');
-    }else if(pathName === '/api'){				    // if '/api' route was requested, read the file 
-        fs.readFile(`${__dirname}/dev-data/data.json`,'utf-8', (err, data) => {
+    }else if(pathName === '/api'){				    
+        fs.readFile(`${__dirname}/dev-data/data.json`,'utf-8', (err, data) => {   // read the file 
             const productData = JSON.parse(data);   // tells browser that we are sending back json
             res.writeHead(200,{ 'Content-type': 'application/json'});  // header object
-            res.end(data);   						// the end() function will send back a string
+            res.end(data);   				// the end() function sends back a string
         });
     }else{
         res.writeHead(404, {
