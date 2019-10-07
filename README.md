@@ -442,7 +442,7 @@ Updated code:
 - Next up modify the template-overview.html. (the opening page that displays all products).
   - The carts-container in this file includes a figure tag for each product. Since we don’t know how many products we have, we can’t tell how many figure tags we need initially. 
   - Create a template-card.html that will hold only one of those cards (one figure element - one product). Copy the figure element from the template-overview.html to template-card.html.  
-  Delete all the figure tags from the template-overview.html and add a placeholder here for the products ```{%PRODUCT_CARDS%}```. Later on we will replace this placeholder with as many cards as we need.  
+  Delete all the figure tags from the template-overview.html and add a placeholder here for the products ```{%PRODUCT_CARDS%}```. Later on replace the placeholder with as many cards as needed dynamically.  
 
 template-overview.html:
 ```html
@@ -474,25 +474,17 @@ template-card.html:
       <span>Detail <i class="emoji-right">👉</i></span>
     </a>
   </figure>
- ```
-- Delete the all cards(figure elements from the template-overview.html) and create a placeholder in here - {%PRODUCT-CARDS%}. This is where the products will be added to dynamically.
-```html
-  <body>
-    <div class="container">
-      <h1>🌽 Node Farm 🥦</h1>
-      <div class="cards-container">
-          {%PRODUCT-CARDS%}
-      </div>
-    </div>
-  </body>
-```
-Modify the a tag inside the overview-template which will take us to the details template. The “href” property will have the path to the details.html with the product id number attached as a query string. The id placeholder will be replaced with the correct id number dynamically.
+ ```  
+
+- Modify the a tag (Details Button) inside the template-card.html which will take us to the details template. The “href” property will have the path to the details.html with the product id number attached as a query string. The id placeholder will be replaced with the correct id number dynamically.  
+![Node product details button](images/nodeProductDetails.png)
 ```html
     <a class="card__link" href="/product?id={%ID%}">
       <span>Detail <i class="emoji-right">👉</i></span>
     </a>
+```  
+<br/>
 
-```
 
 ### HTML Templating: Filling the Templates
 
