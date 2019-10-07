@@ -489,9 +489,10 @@ template-card.html:
 ### HTML Templating: Filling the Templates
 
 -	To replace the placeholders with the content, the first step is to save the templateOverview.html (product page) in a variable.   
-    - Each time there is a new request for the root (/) or (/overview) route, the first thing we do is to read the templateOverview.    
-	  This action can be done outside of the callback function; because the templates will always be the same. We can read them into memory at the start of the application; and modify the content later on when necessary. (Just like we did with the data, there is no need to read the data each time there is a request, and the same happens for the templates.)
-	  So add the html templates in top-code section synchronosly.  
+    - Each time there is a new request for the root (/) or (/overview) route, the templateOverview.html will be read.
+	  This action can be done outside of the callback function; because the templates will always be the same. We can read them into memory at the start of the application; and modify the content later on when necessary.  
+	  (Just like there is no need to read the data each time there is a request, the same applies for the templates.)  
+	  So read the html templates synchronosly into a variable in top-code.  
 	  When sending back the template don’t forget to declare the Content-type as html. 
 ```javascript
 const fs = require('fs');
