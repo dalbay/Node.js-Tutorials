@@ -488,10 +488,11 @@ template-card.html:
 
 ### HTML Templating: Filling the Templates
 
--	Replace the placeholders with the overview
--	The first step is to load the template overview – each time we send a request for the /overview route, the first thing we do is to read the template overview.
-But like we did before, we can do this outside of the callback function. (This template will always be the same and we can write it into memory when we first start the application; when necessary modify it.) There is also no need to read the data each time there is a request. Do the same for each template.
-When sending back the template don’t forget to declare the content type as html. 
+-	Replace the placeholders with the content.
+-	The first step is to load the template-overview (Product page).  
+    - Each time we send a /overview route request, the first thing we do is to read the data.json file (product objects).  
+	  But like we did before, we can do this outside of the callback function because there is no need to read the data each time there is a request. Do the same for each template.  
+	  When sending back the template don’t forget to declare the Content-type as html. 
 ```javascript
 const fs = require('fs');
 const http = require('http');
