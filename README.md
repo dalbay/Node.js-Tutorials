@@ -443,6 +443,7 @@ Updated code:
   - The carts-container in this file includes a figure tag for each product. Since we don’t know how many products we have, we can’t tell how many figure tags we need initially. 
   - Create a template-card.html that will hold only one of those cards (one figure element - one product). Copy the figure element from the template-overview.html to template-card.html.  
   Delete all the figure tags from the template-overview.html and add a placeholder here for the products ```{%PRODUCT_CARDS%}```. Later on we will replace this placeholder with as many cards as we need.  
+
 template-overview.html:
 ```html
 	  <body>
