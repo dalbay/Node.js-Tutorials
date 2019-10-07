@@ -551,7 +551,10 @@ The browser will display the page with the placeholder:
   We will loop through the object array with map and store it in another array. Map accepts a callback function; this callback functions gets an argument(the current element). For each iteration we will replace the placeholder with the data. Adding ```join('')``` to the end of the statement will join all the html elements returned into a string. Create a function replaceTemplate() that will replace the rest of all the placeholders inside the html.  
  
  ```JavaScript
-         // replace the placeholders with actual data:
+    // Overview page    
+    if(pathName === '/' || pathName === '/overview'){
+        res.writeHead(200,{ 'Content-type': 'text/html'});
+        // replace the placeholders with actual data:
         const cardsHtml = dataObj.map(el => replaceTemplate(tempCard, el)).join('');
         const output = tempOverview.replace('{%PRODUCT_CARDS%}', cardsHtml);
         res.end(output);
@@ -574,9 +577,36 @@ The browser will display the page with the placeholder:
 	};
  ```  
  Run the application in node and load the page in the browser:
- ![Dynamic product listing](images/nodeTemp3.png)
-
-  
+ ![Dynamic product listing](images/nodeTemp3.png)  
+ <br/>
+ 
+ ### Parsing Variables from URL'same
+ 
+ - Implement Product Details page
+   - Implement the url model - ```const url = require('url');```
+   - console log the url and see what you need:
+     ```
+	 console.log(req.url);
+		 OUTPUT:
+		 /
+	 console.log(url.parse(req.url));
+		 OUTPUT:
+		 Url {
+		  protocol: null,
+		  slashes: null, 
+		  auth: null,    
+		  host: null,    
+		  port: null,    
+		  hostname: null,
+		  hash: null,
+		  search: null,
+		  query: null,
+		  pathname: '/',
+		  path: '/',
+		  href: '/' }
+	 ```
+   - The ES6 syntax to specify both variables would be:
+   
 
 
 ----------------------------------------
