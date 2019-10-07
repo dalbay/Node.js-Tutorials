@@ -491,15 +491,17 @@ template-card.html:
 -	Replace the placeholders with the content.
 -	The first step is to load the template-overview (Product page).  
     - Each time we send a /overview route request, the first thing we do is to read the data.json file (product objects).  
-	  But like we did before, we can do this outside of the callback function; there is no need to read the data each time there is a request because this template will always be the same. We can read the data into memory at the start of the application; modify it only when necessary. Do the same for each template.  
+	  But like we did before, we can do this outside of the callback function; there is no need to read the data each time there is a request because this template will always be the same. We can read the data into memory at the start of the application; modify it only when necessary. Do the same synchronous file read for all three templates.  
 	  When sending back the template don’t forget to declare the Content-type as html. 
 ```javascript
 const fs = require('fs');
 const http = require('http');
 
+// top-level code (sync read for all three templates)
 const tempOverview = fs.readFileSync(`${__dirname}/templates/template-overview.html`, 'utf-8');
 const tempCard = fs.readFileSync(`${__dirname}/templates/template-card.html`, 'utf-8');
 const tempProduct = fs.readFileSync(`${__dirname}/templates/template-product.html`, 'utf-8');
+
 const server = http.createServer((req,res) => { 
     const pathName =  req.url;    
     // Overview page    
@@ -527,7 +529,6 @@ const server = http.createServer((req,res) => {
 server.listen(8000, '127.0.0.1', () => {
     console.log('Listening to requests on port 8000');
 });
-
 ```
 Run the application in the server, type in the route for the overview template and open up the page to see if everything is running as expected.
 
