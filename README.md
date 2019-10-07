@@ -490,9 +490,8 @@ template-card.html:
 
 -	To replace the placeholders with the content, first save the templateOverview.html (product page) in a variable.   
     - Each time there is a new request for the root (/) or (/overview) route, the templateOverview.html will be read.
-	  This action can be done outside of the callback function; because the templates will always be the same. We can read them into memory at the start of the application; and modify the content later on when necessary.  
-	  (Just like there is no need to read the data each time there is a request, the same applies for the templates.)  
-	  So read the html templates synchronosly into a variable in top-code.  
+	  This action can be done outside of the callback function (Just like reading the data); because the templates will always be the same. We can read them into memory at the start of the application; and modify the content later on when necessary.  
+      So read the html templates synchronosly into a variable in top-level.  
 	  When sending back the template don’t forget to declare the Content-type as html. 
 ```javascript
 	const fs = require('fs');
@@ -546,9 +545,11 @@ The browser will display the page with the placeholder:
 ![Node styled page image](images/nodeStyledPage.png)  
 <br/>
 
-- The next step to replace the placeholers with actual data - use the ```dataObj``` constant (```const dataObj = JSON.parse(data);```) which stores an array of all the objects that are in data.json file.  
-  Loop through this array and replace the placeholders in the template with the actual data.  
-  We will loop through the object array with map and store it in another array. Map accepts a callback function; this callback functions gets an argument(the current element) and whatever is returned will be saved into an array. For each iteration we will replace the placeholder with that object; so we create the function replaceTemplate(). Adding ```join('')``` will join all the html elements returned into a string.
+- The next step is to replace the placeholer with the actual content 
+  - create a constant variable named dataObj (```const dataObj = JSON.parse(data);```) which stores an array of all the objects that are in data.json file.
+  - Loop through this array and replace the placeholders in the template with the actual data.  
+  We will loop through the object array with map and store it in another array. Map accepts a callback function; this callback functions gets an argument(the current element). For each iteration we will replace the placeholder with the data. Adding ```join('')``` to the end of the statement will join all the html elements returned into a string. Create a function replaceTemplate() that will replace the rest of all the placeholders inside the html.  
+  
 
   
 
