@@ -549,7 +549,32 @@ The browser will display the page with the placeholder:
   - create a constant variable named dataObj (```const dataObj = JSON.parse(data);```) which stores an array of all the objects that are in data.json file.
   - Loop through this array and replace the placeholders in the template with the actual data.  
   We will loop through the object array with map and store it in another array. Map accepts a callback function; this callback functions gets an argument(the current element). For each iteration we will replace the placeholder with the data. Adding ```join('')``` to the end of the statement will join all the html elements returned into a string. Create a function replaceTemplate() that will replace the rest of all the placeholders inside the html.  
-  
+ 
+ ```JavaScript
+         // replace the placeholders with actual data:
+        const cardsHtml = dataObj.map(el => replaceTemplate(tempCard, el)).join('');
+        const output = tempOverview.replace('{%PRODUCT_CARDS%}', cardsHtml);
+        res.end(output);
+		
+		
+// replace template function ( / / g means global - all of the placehodlers will be replaced.)
+	const replaceTemplate = (template, product) => {
+		let output = template.replace(/{%PRODUCTNAME%}/g, product.productName);
+		output = output.replace(/{%IMAGE%}/g, product.image);
+		output = output.replace(/{%PRICE%}/g, product.price);
+		output = output.replace(/{%FROM%}/g, product.from);
+		output = output.replace(/{%NUTRIENTS%}/g, product.nutrients);
+		output = output.replace(/{%QUANTITY%}/g, product.quantity);
+		output = output.replace(/{%DESCRIPTION%}/g, product.description);
+		output = output.replace(/{%ID%}/g, product.id);
+
+		if (!product.organic) output = output.replace(/{%NOT_ORGANIC%}/g, 'not_organic'); // -> a css class the will display:none;
+
+		return output;
+	};
+ ```  
+ Run the application in node and load the page in the browser:
+ ![Dynamic product listing](images/nodeTemp3.png)
 
   
 
