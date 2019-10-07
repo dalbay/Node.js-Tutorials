@@ -531,7 +531,11 @@ server.listen(8000, '127.0.0.1', () => {
 });
 ```
 Run the application in the server, type in the route for the overview template and open up the page to see if everything is running as expected.
-
+```
+	PS C:\ . . . > node index.js
+				 Listening to requests on port 8000
+```  
+![Node styled page image](images/nodeStyledPage.png)
 
 ----------------------------------------
 
