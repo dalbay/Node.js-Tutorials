@@ -496,11 +496,15 @@ template-card.html:
 ```javascript
 const fs = require('fs');
 const http = require('http');
+// SERVER
 
 // top-level code (sync read for all three templates)
 const tempOverview = fs.readFileSync(`${__dirname}/templates/template-overview.html`, 'utf-8');
 const tempCard = fs.readFileSync(`${__dirname}/templates/template-card.html`, 'utf-8');
 const tempProduct = fs.readFileSync(`${__dirname}/templates/template-product.html`, 'utf-8');
+
+const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8');
+const dataObj = JSON.parse(data);
 
 const server = http.createServer((req,res) => { 
     const pathName =  req.url;    
@@ -533,9 +537,18 @@ server.listen(8000, '127.0.0.1', () => {
 Run the application in the server, type in the route for the overview template and open up the page to see if everything is running as expected.
 ```
 	PS C:\ . . . > node index.js
-				 Listening to requests on port 8000
+	             Listening to requests on port 8000
 ```  
-![Node styled page image](images/nodeStyledPage.png)
+The browser will display the page with the placeholder:
+![Node styled page image](images/nodeStyledPage.png)  
+<br/>
+**** 
+- Replace the placeholers with actual data - use the dataObj constant (```const dataObj = JSON.parse(data);```) which stores an array of all the objects that are in data.json file.  
+  Loop through this array and replace the placeholders in the template with the actual data.
+  We will loop through the object array with map and store it in another array. Map accepts a callback function; this callback functions gets an argument(the current element) and whatever is returned will be saved into an array. For each iteration we will replace the placeholder with that object; so we create the function replaceTemplate().
+
+  
+
 
 ----------------------------------------
 
