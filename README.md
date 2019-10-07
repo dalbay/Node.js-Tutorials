@@ -439,10 +439,22 @@ Updated code:
         </div>
 ```
 
-- Next up modify the overview.html. (the opening page that displays all products).
- ![NodeJS UI1](/images/nodeTemp2.png)
-The carts-container in this file includes a figure tag for each product. Since we don’t know how many products we have, we can’t tell how many figure tags we need initially. 
-Create a template-card that will hold only one card (one figure element - one product) called template-card.html. Copy the figure element from template-overview.html and past it here.
+- Next up modify the template-overview.html. (the opening page that displays all products).
+  - The carts-container in this file includes a figure tag for each product. Since we don’t know how many products we have, we can’t tell how many figure tags we need initially. 
+  - Create a template-card.html that will hold only one of those cards (one figure element - one product). Copy the figure element from the template-overview.html to template-card.html.  
+  Delete all the figure tags from the template-overview.html and add a placeholder here for the products ```{%PRODUCT_CARDS%}```. Later on we will replace this placeholder with as many cards as we need.  
+template-overview.html:
+```html
+	  <body>
+    <div class="container">
+      <h1>🌽 Node Farm 🥦</h1>
+      <div class="cards-container">
+        {%PRODUCT_CARDS%}
+      </div>
+    </div>
+  </body>
+```  
+template-card.html:
 ```html
 <figure class="card">
     <div class="card__emoji">{%IMAGE%}{%IMAGE%}</div>
