@@ -491,7 +491,7 @@ template-card.html:
 -	Replace the placeholders with the content.
 -	The first step is to load the template-overview (Product page).  
     - Each time we send a /overview route request, the first thing we do is to read the data.json file (product objects).  
-	  But like we did before, we can do this outside of the callback function because there is no need to read the data each time there is a request. Do the same for each template.  
+	  But like we did before, we can do this outside of the callback function; there is no need to read the data each time there is a request because this template will always be the same. We can read the data into memory at the start of the application; modify it only when necessary. Do the same for each template.  
 	  When sending back the template don’t forget to declare the Content-type as html. 
 ```javascript
 const fs = require('fs');
