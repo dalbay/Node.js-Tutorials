@@ -560,7 +560,7 @@ The browser will display the page with the placeholder:
         res.end(output);
 		
 		
-// replace template function ( / / g means global - all of the placehodlers will be replaced.)
+	// replace template function ( / / g means global - all of the placehodlers will be replaced.)
 	const replaceTemplate = (template, product) => {
 		let output = template.replace(/{%PRODUCTNAME%}/g, product.productName);
 		output = output.replace(/{%IMAGE%}/g, product.image);
@@ -580,7 +580,7 @@ The browser will display the page with the placeholder:
  ![Dynamic product listing](images/nodeTemp3.png)  
  <br/>
  
- ### Parsing Variables from URL'same
+ ### Parsing Variables from URL's
  
  - Implement Product Details page
    - Implement the url model - ```const url = require('url');```
