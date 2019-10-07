@@ -488,56 +488,56 @@ template-card.html:
 
 ### HTML Templating: Filling the Templates
 
--	To replace the placeholders with the content, the first step is to save the templateOverview.html (product page) in a variable.   
+-	To replace the placeholders with the content, first save the templateOverview.html (product page) in a variable.   
     - Each time there is a new request for the root (/) or (/overview) route, the templateOverview.html will be read.
 	  This action can be done outside of the callback function; because the templates will always be the same. We can read them into memory at the start of the application; and modify the content later on when necessary.  
 	  (Just like there is no need to read the data each time there is a request, the same applies for the templates.)  
 	  So read the html templates synchronosly into a variable in top-code.  
 	  When sending back the template don’t forget to declare the Content-type as html. 
 ```javascript
-const fs = require('fs');
-const http = require('http');
+	const fs = require('fs');
+	const http = require('http');
 // SERVER
 
 // top-level code:
-
-// synchronosly read all three templates and save them in a variables.
-const tempOverview = fs.readFileSync(`${__dirname}/templates/template-overview.html`, 'utf-8');
-const tempCard = fs.readFileSync(`${__dirname}/templates/template-card.html`, 'utf-8');
-const tempProduct = fs.readFileSync(`${__dirname}/templates/template-product.html`, 'utf-8');
 // synchronosly read data and save in a variable
-const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8');
-const dataObj = JSON.parse(data);
+	const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8');
+	const dataObj = JSON.parse(data);
+// synchronosly read all three templates and save them in variables.
+	const tempOverview = fs.readFileSync(`${__dirname}/templates/template-overview.html`, 'utf-8');
+	const tempCard = fs.readFileSync(`${__dirname}/templates/template-card.html`, 'utf-8');
+	const tempProduct = fs.readFileSync(`${__dirname}/templates/template-product.html`, 'utf-8');
 
-const server = http.createServer((req,res) => { 
-    const pathName =  req.url;    
-    // Overview page    
-    if(pathName === '/' || pathName === '/overview'){
-        res.writeHead(200,{ 'Content-type': 'text/html'});
-        res.end(tempOverview);
-    // Product page
-    }else if(pathName === '/product'){
-        res.end('This is the PRODUCT');
-    // API
-    }else if(pathName === '/api'){
-        res.writeHead(200,{ 'Content-type': 'application/json'});
-        res.end(data);
-    // Not  Found
-    }else{
-        res.writeHead(404, {
-            'Content-type':'text/html',
-            'my-own-header':'hello-world'
-        });
-        res.end('<h1>Page not found!</h1>')
-    }
-});
+
+	const server = http.createServer((req,res) => { 
+		const pathName =  req.url;    
+		// Overview page    
+		if(pathName === '/' || pathName === '/overview'){
+			res.writeHead(200,{ 'Content-type': 'text/html'});
+			res.end(tempOverview);
+		// Product page
+		}else if(pathName === '/product'){
+			res.end('This is the PRODUCT');
+		// API
+		}else if(pathName === '/api'){
+			res.writeHead(200,{ 'Content-type': 'application/json'});
+			res.end(data);
+		// Not  Found
+		}else{
+			res.writeHead(404, {
+				'Content-type':'text/html',
+				'my-own-header':'hello-world'
+			});
+			res.end('<h1>Page not found!</h1>')
+		}
+	});
 
 // use that server an on that call listen.
-server.listen(8000, '127.0.0.1', () => {
-    console.log('Listening to requests on port 8000');
-});
+	server.listen(8000, '127.0.0.1', () => {
+		console.log('Listening to requests on port 8000');
+	});
 ```
-Run the application in the server, type in the route for the overview template and open up the page to see if everything is running as expected.
+Run the application in the server; type in the route for the overview template and open the page in the browser to see if everything is running as expected.
 ```
 	PS C:\ . . . > node index.js
 	             Listening to requests on port 8000
