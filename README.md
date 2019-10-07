@@ -488,21 +488,23 @@ template-card.html:
 
 ### HTML Templating: Filling the Templates
 
--	Replace the placeholders with the content.
--	The first step is to load the template-overview (Product page).  
-    - Each time we send a /overview route request, the first thing we do is to read the data.json file (product objects).  
-	  But like we did before, we can do this outside of the callback function; there is no need to read the data each time there is a request because this template will always be the same. We can read the data into memory at the start of the application; modify it only when necessary. Do the same synchronous file read for all three templates.  
+-	To replace the placeholders with the content, the first step is to save the templateOverview.html (product page) in a variable.   
+    - Each time there is a new request for the root (/) or (/overview) route, the first thing we do is to read the templateOverview.    
+	  This action can be done outside of the callback function; because the templates will always be the same. We can read them into memory at the start of the application; and modify the content later on when necessary. (Just like we did with the data, there is no need to read the data each time there is a request, and the same happens for the templates.)
+	  So add the html templates in top-code section synchronosly.  
 	  When sending back the template don’t forget to declare the Content-type as html. 
 ```javascript
 const fs = require('fs');
 const http = require('http');
 // SERVER
 
-// top-level code (sync read for all three templates)
+// top-level code:
+
+// synchronosly read all three templates and save them in a variables.
 const tempOverview = fs.readFileSync(`${__dirname}/templates/template-overview.html`, 'utf-8');
 const tempCard = fs.readFileSync(`${__dirname}/templates/template-card.html`, 'utf-8');
 const tempProduct = fs.readFileSync(`${__dirname}/templates/template-product.html`, 'utf-8');
-
+// synchronosly read data and save in a variable
 const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8');
 const dataObj = JSON.parse(data);
 
@@ -542,10 +544,10 @@ Run the application in the server, type in the route for the overview template a
 The browser will display the page with the placeholder:
 ![Node styled page image](images/nodeStyledPage.png)  
 <br/>
-**** 
-- Replace the placeholers with actual data - use the dataObj constant (```const dataObj = JSON.parse(data);```) which stores an array of all the objects that are in data.json file.  
-  Loop through this array and replace the placeholders in the template with the actual data.
-  We will loop through the object array with map and store it in another array. Map accepts a callback function; this callback functions gets an argument(the current element) and whatever is returned will be saved into an array. For each iteration we will replace the placeholder with that object; so we create the function replaceTemplate().
+
+- The next step to replace the placeholers with actual data - use the ```dataObj``` constant (```const dataObj = JSON.parse(data);```) which stores an array of all the objects that are in data.json file.  
+  Loop through this array and replace the placeholders in the template with the actual data.  
+  We will loop through the object array with map and store it in another array. Map accepts a callback function; this callback functions gets an argument(the current element) and whatever is returned will be saved into an array. For each iteration we will replace the placeholder with that object; so we create the function replaceTemplate(). Adding ```join('')``` will join all the html elements returned into a string.
 
   
 
