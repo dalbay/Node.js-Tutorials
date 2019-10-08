@@ -723,18 +723,35 @@ The browser will display the page with the placeholder:
 	```
 - Install **nodemon** - a development dependancy.
   - nodemon automatically restarts the node application whenever we make changes to files in the working directory.
-  - **```npm install nodemon  --save-dev```**  
-  - instead of starting the application in node index.js, start it in nodemon -```nodemon index.js```.
-  - If you don't want to install it globally and local run doesn't work add this script to your package.json file:
+  - Local install: **```npm install nodemon  --save-dev```**
+  - nodemon will add a devDependencies and a scripts element to the package.json file:  
     ```JavaScript
-	"scripts": {
-		"serve": "nodemon server.js"
+	{
+	  "name": "node-farm",
+	  "version": "1.0.0",
+	  "description": "Learning node.js",
+	  "main": "index.js",
+	  "scripts": {
+		"start": "nodemon index.js"
+	  },
+	  "author": "Jonas Schmedtmann",
+	  "license": "ISC",
+	  "dependencies": {
+		"slugify": "^1.3.5"
+	  },
+	  "devDependencies": {
+		"nodemon": "^1.19.3"
 	  }
-	```  
+	}
+ 	```
+    To start the node application : **```npm run start```** instead of *node index.js*.
+  - Global install: **```npm install nodemon  --global```**
+ 
 	and then use  
 	```npm run serve```  
-	nodemon will be watching every file for some changes and as soon as you save the file it will automatically run the node application again.
+	nodemon will be watching every file for some changes and as soon as you save the file it will automatically run the node application again.  
+	To start the node application using nodemon: **```nodemon index.js```** instead of *node index.js*.
 
-- There are two types of installs of the packages. 
+- The two different types of installs for packages:
   - Local - will only work in the project. npm saves package in project folder.
   - Global - packages will be available in any folder in our machine.
