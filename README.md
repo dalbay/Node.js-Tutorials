@@ -694,7 +694,9 @@ The browser will display the page with the placeholder:
 
 ### Types of Packages and Installs
 - Simple/regular dependancies are packages that contain some code that we can include in our own code. *Code upon which we build our application*. Our code will depend on them to work correctly.  
-  For exampl, express is a dependency.
+  For example, express is a dependency.
+- Development dependencies - tools for development.   
+  For example, testing tool, debugger,...
 
 - Install **Slugify**
   - to make more readable URL's. 
@@ -719,5 +721,11 @@ The browser will display the page with the placeholder:
 	  }
 	}
 	```
+- Install **nodemon** - a development dependancy.
+  - nodemon automatically restarts the node application whenever we make changes to files in the working directory.
+  - **```npm install nodemon  --save-dev```**  
+  - instead of starting the application in node index.js, start it in nodemon -```nodemon index.js```.
 
-
+- There are two types of installs of the packages. 
+  - Local - will only work in the project. npm saves package in project folder.
+  - Global - packages will be available in any folder in our machine.
