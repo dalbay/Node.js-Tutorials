@@ -643,15 +643,13 @@ The browser will display the page with the placeholder:
 	 ```
 ---
 ### Create Your Own Modules
-- export functions from them.
-- import a module in another module and use the funcion.
-<br/>
-Assuming we are using the replaceTemplate() function in multiple different javascript files.  
-What we can do is create a module and export that function from it.  
-In node.js every file is treated as a module.  
-Create a new folder "modules" and a file named "replaceTemplate.js"  
-Cut out the replaceTemplate() funcion from the index.js and paste it in the replaceTemplate.js file.  
-To **export** this function from the module we are going to use the module objects export propey **```module.exports```**. Simply assign an anonymous function to it.  
+- export functions from a module; import it to use it in a different file.
+- In node.js every file is treated as a module.  
+##### Example:
+  - Assuming we will be using the ```replaceTemplate()``` function in multiple different javascript files.
+  - Create a new folder "modules", and a file named "replaceTemplate.js"  
+  - Cut out the replaceTemplate() funcion from the index.js and paste it in the replaceTemplate.js file.  
+  - To **export** this function from the module we are going to use the module objects export propey **```module.exports```**. Simply assign an anonymous function to it.  
 ```JavaScript
 	module.exports = (temp, product) => {
 	  let output = temp.replace(/{%PRODUCTNAME%}/g, product.productName);
@@ -667,8 +665,9 @@ To **export** this function from the module we are going to use the module objec
 	  return output;
 	};	
 ```  
-**Import** this function to the top of another module with the **```require()```** method. In the require function the dot(.) means current root folder.  
-We can save this function in a const variable. Call the variable 'replaceTemplate' so we don't have to change the code for each instance it was used before.  
+  - **Import** this function to the top of another module with the **```require()```** method.  
+    In the require function the dot(.) means current root folder. 
+  - Save this function in a const variable. Call the variable 'replaceTemplate' so we don't have to change the code for each instance it was used before.  
 ```JavaScript
 	const replaceTemplate = require('./modules/replaceTemplate');
 ```
