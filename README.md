@@ -380,7 +380,8 @@ const server = http.createServer((req,res) => {
     }
 });
 ```  
-Restart the server, and add path /api to the url; this will return product data in string format to the browser, and logs the products data as a javascript objets to the console.
+Restart the server, and add path /api to the url; this will return product data in string format to the browser, and logs the products data as a javascript objets to the console.  
+
 ![NodeJS API browser](/images/nodeAPI.png)
 ![NodeJS API console](/images/nodeAPI1.png)    
 <br/>
@@ -391,7 +392,7 @@ Restart the server, and add path /api to the url; this will return product data 
 Each time a user makes that API request(/api), the server will read the file to send it back.  
 A better solution would be to read the file once in the beginning and then each time a user hits this route, simply send back the data.  
 <br/>
-Take out the fs.readFile() method from the code and use the *synchronous version for the read function - fs.readFileSync()*, and place it in the top level. *Top Level code is only executed once in the beginning*.
+Take out the fs.readFile() method from the createServer code and use the *synchronous version of the file steam reader - fs.readFileSync()*, and place it to the top level. *Top Level code is only executed once in the beginning*.
 <br/>
 
 In other words:  
@@ -428,12 +429,12 @@ Updated code:
 ### HTML Templating: Building the Templates (UI)
 
 - Create an html template (overview.html file) that will display the data that is being read from a json file. 
-- The fields that are read from the json file are dynamically place on the template.  
+- The fields in the json file will be dynamically placed on the html templates.  
   To do this, put a placeholder for the values of these fields inside the html and replace them later with actual data.
-- Each product will also have its own detail page.
+- Each product will also have its own detail page (template-product.html).
 - Here are the fields that we have in our data.json file:
   ![json data image](/images/nodeJson.png)
-- The template-product page:  
+- The Product page:  
   Add placeholders for these fields; they should be eazy to recognized; for instance here we use {%...%}
 ```html
           <span class="product__emoji product__emoji--5">{%IMAGE%}</span>
@@ -488,7 +489,7 @@ template-card.html:
   </figure>
  ```  
 
-- Modify the a tag (Details Button) inside the template-card.html which will take us to the details template. The “href” property will have the path to the details.html with the product id number attached as a query string. The id placeholder will be replaced with the correct id number dynamically.  
+- Modify the a tag (Details Button) inside the template-card.html which will take us to the product-template. The “href” property has the path to the product page along with the product id number attached as a *query string*. The id placeholder will be replaced with the correct id number dynamically.  
 ![Node product details button](images/nodeProductDetails.png)
 ```html
     <a class="card__link" href="/product?id={%ID%}">
@@ -500,11 +501,11 @@ template-card.html:
 
 ### HTML Templating: Filling the Templates
 
--	To replace the placeholders with the content, first save the templateOverview.html in a variable.   
-    - Each time there is a new request for the root (/) or (/overview) route, the templateOverview.html will be read.  
+-	To replace the placeholders with the content, first save the template-overview.html in a variable.   
+    - Each time there is a new request for the root (/) or (/overview) route, the template-overview.html will be read.  
 	  This action can be done outside of the callback function (Just like reading the data); because the templates will always be the same. We can read them into memory at the start of the application; and modify the content later on when necessary.  
-      So place the read functionality synchronosly to the top-level and save it as a const variable.  
-	  When sending back the template don’t forget to declare the Content-type as html. 
+      So read all three templates synchronosly and save them to the top-level as const variables.  
+	  When sending back the templates as a respond, don’t forget to declare the Content-type as html. 
 ```javascript
 	const fs = require('fs');
 	const http = require('http');
@@ -558,9 +559,9 @@ The browser will display the page with the placeholder:
 <br/>
 
 - The next step is to replace the placeholer with the actual content 
-  - Create a constant variable named dataObj (```const dataObj = JSON.parse(data);```) which stores an array of all the objects that are in data.json file.
+  - Use the constant variable named dataObj (```const dataObj = JSON.parse(data);```) from the top-level, which stores an array of all the objects that are in data.json file.
   - Loop through this array and replace the placeholders in the template with the actual data.  
-  We will loop through the object array with map and store it in another array. Map accepts a callback function; this callback functions gets an argument(the current element). For each iteration we will replace the placeholder with the data. Adding ```join('')``` to the end of the statement will join all the html elements returned into a string. Create a function replaceTemplate() that will replace the rest of all the placeholders inside the html.  
+  We will loop through the object array with the ```map()``` function and store it in another array. Map accepts a callback function; this callback functions gets an argument(the current element). For each iteration we will replace the placeholder with the data. Adding ```join('')``` to the end of the statement will join all the html elements returned into a string. Create a function replaceTemplate() that will replace the rest of all the placeholders inside the html.  
  
  ```JavaScript
     // Overview page    
@@ -626,9 +627,20 @@ The browser will display the page with the placeholder:
    - Next, we see that the returned object has two propteries that we can make use of: ```query``` and ```pathname```.  
      Create two variables with the same property names. The ES6 syntax to specify both variables would be:  
      **```const { query, pathname } = (url.parse(req.url, true));```** 
-   - Build the Product page using the url and id to build template-product.html.  
-     Replace the only placeholder we have in this template.
-   
+   - Build the Product page using these properties(url path and product id).
+     Replace the placeholder in the product-template with the object property values.
+     ```JavaScript
+	 // Product page
+     }else if(pathname === '/product'){
+        // declare content type of the response 
+        res.writeHead(200, { 'Content-type': 'text/html'});
+        // get product object from the dataObj array
+        const product = dataObj[query.id];
+        // create the output
+        const output = replaceTemplate(tempProduct, product);
+        // send output as a response
+        res.end(output);	 
+	 ```
    
 
 
