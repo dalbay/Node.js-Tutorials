@@ -305,6 +305,7 @@ const server = http.createServer((req,res) => {
 #### Example: 
 In this example we are offering data about the products from a json file. This is the data that the API will send to the client when requested.  
 **JSON** is a simple text format that looks like a JavaScript Object. Each object inside this array has a key of type string, and a value attached to it.  
+A common use of JSON is to exchange data to/from a web server. When receiving data from a web server, the data is always a string. Parse the data with **JSON.parse()** , and the data becomes a *JavaScript object*.  
 - First add another route(/api) to our project, and a simple placeholder for the response.
 ```javascript
 const http = require('http');
@@ -331,19 +332,19 @@ const server = http.createServer((req,res) => {
 
 - Next, 
   - Read data from the data.json file, then
-  - parse JSON into JavaScript, and then 
+  - parse JSON into a JavaScript object, and then 
   - send back the result to the client.  
 
 - When a file is requested, to find its location in the file system, we could access it with this type of code:  
   -  ```fs.readFile('./dev-data/data.json')```
   The dot (.) in node referse to the directory from which we run the node command in the terminal. If we run the node command somewhere else the dot would mean something else. (So for example if we started node from the desktop then the dot would mean the desktop).  
   Therefore, this approach is not ideal. 
-- A better way to locate the script that we want to execute in the files system :  
+- A better approach to locate the script that we want to execute in the files system :  
   - ***```__dirname```*** variable  
   All node.js scripts get access to this variable.  
   This variable always translates to the directory in which the script is located.(Note that only exception for this rule is when used with the required function).  
   To access the *__dirname* variable use a template string.  
-  When sending back the data we need to tell the browser the ```Content-type```. In our case it’s JSON. 
+  When sending back a response we need to tell the browser the ```Content-type```. In our case it’s JSON. 
 ```javascript
 const fs = require('fs');
 const http = require('http');
@@ -354,11 +355,17 @@ const server = http.createServer((req,res) => {
         res.end('This is the OVERVIEW');
     }else if(pathName === '/product'){
         res.end('This is the PRODUCT');
-    }else if(pathName === '/api'){				    
-        fs.readFile(`${__dirname}/dev-data/data.json`,'utf-8', (err, data) => {    // read the file 
-            const productData = JSON.parse(data);    
-            res.writeHead(200,{ 'Content-type': 'application/json'});              // header object
-            res.end(data);   				                                       // this sends back a string
+    }else if(pathName === '/api'){
+        // read the file	
+        fs.readFile(`${__dirname}/dev-data/data.json`,'utf-8', (err, data) => {
+			// parse string data to javascript object
+            const productData = JSON.parse(data);
+			// header object
+            res.writeHead(200,{ 'Content-type': 'application/json'});
+			// this sends back the string data 
+            res.end(data);
+			// this logs the javascript object
+			console.log(productData);
         });
     }else{
         res.writeHead(404, {
@@ -488,10 +495,10 @@ template-card.html:
 
 ### HTML Templating: Filling the Templates
 
--	To replace the placeholders with the content, first save the templateOverview.html (product page) in a variable.   
-    - Each time there is a new request for the root (/) or (/overview) route, the templateOverview.html will be read.
+-	To replace the placeholders with the content, first save the templateOverview.html in a variable.   
+    - Each time there is a new request for the root (/) or (/overview) route, the templateOverview.html will be read.  
 	  This action can be done outside of the callback function (Just like reading the data); because the templates will always be the same. We can read them into memory at the start of the application; and modify the content later on when necessary.  
-      So read the html templates synchronosly into a variable in top-level.  
+      So place the read functionality synchronosly to the top-level and save it as a const variable.  
 	  When sending back the template don’t forget to declare the Content-type as html. 
 ```javascript
 	const fs = require('fs');
@@ -501,7 +508,7 @@ template-card.html:
 // top-level code:
 // synchronosly read data and save in a variable
 	const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8');
-	const dataObj = JSON.parse(data);
+	const dataObj = JSON.parse(data);  //stores an array of all the elements
 // synchronosly read all three templates and save them in variables.
 	const tempOverview = fs.readFileSync(`${__dirname}/templates/template-overview.html`, 'utf-8');
 	const tempCard = fs.readFileSync(`${__dirname}/templates/template-card.html`, 'utf-8');
@@ -546,7 +553,7 @@ The browser will display the page with the placeholder:
 <br/>
 
 - The next step is to replace the placeholer with the actual content 
-  - create a constant variable named dataObj (```const dataObj = JSON.parse(data);```) which stores an array of all the objects that are in data.json file.
+  - Create a constant variable named dataObj (```const dataObj = JSON.parse(data);```) which stores an array of all the objects that are in data.json file.
   - Loop through this array and replace the placeholders in the template with the actual data.  
   We will loop through the object array with map and store it in another array. Map accepts a callback function; this callback functions gets an argument(the current element). For each iteration we will replace the placeholder with the data. Adding ```join('')``` to the end of the statement will join all the html elements returned into a string. Create a function replaceTemplate() that will replace the rest of all the placeholders inside the html.  
  
@@ -576,18 +583,18 @@ The browser will display the page with the placeholder:
 		return output;
 	};
  ```  
- Run the app in node; load the page in the browser -> Output: placeholder is replaced with content.
+ Run the app in node; load the page in the browser -> Output: placeholders are replaced with content.
  ![Dynamic product listing](images/nodeTemp3.png)  
  <br/>
  
  ### Parsing Variables from URL's
  
- - Implementing the Product Details page:
+ - Implementing the Product page (template-product.html):
    - Import the **url model**  
      ```const url = require('url');```
-   - The DETAILS button for a product will add the product ID which was replaced with actual data to the queryString, and navigate to  url path: /product  
+   - The DETAILS button for a product will add the product ID, which was replaced with actual data, to the queryString; and navigate to url path: /product  
      ```<a class="card__link" href="/product?id={%ID%}">```  
-	 Click on the DETAILS button and console log the output and see what properties the requested url has to offer.  
+	 Click on the DETAILS button and console log the output to see what properties the requested url has to offer.  
 	 ```JavaScript
 		 console.log(req.url);
 	 /* OUTPUT - is the root:
@@ -612,8 +619,10 @@ The browser will display the page with the placeholder:
 	 ```
 
    - Next, we see that the returned object has two propteries that we can make use of: ```query``` and ```pathname```.  
-     Create two variables for the requesting query and the pathname. The ES6 syntax to specify both variables would be:  
-     **```const { query, pathName} = (url.parse(req.url, true));```**	 
+     Create two variables with the same property names. The ES6 syntax to specify both variables would be:  
+     **```const { query, pathname } = (url.parse(req.url, true));```** 
+   - Build the Product page using the url and id to build template-product.html.  
+     Replace the only placeholder we have in this template.
    
    
 
