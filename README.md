@@ -588,8 +588,7 @@ The browser will display the page with the placeholder:
    - Click on the DETAILS button for a product. This will add the product ID which was replaced with actual data to the queryString.  
      ```<a class="card__link" href="/product?id={%ID%}">```  
 	 Console log the output and see what properties the requested url has to offer.  
-	 
-	```JavaScript
+
 // Click on Details button - output will be the root:
 	 console.log(req.url);
 /* OUTPUT: 			
@@ -612,7 +611,7 @@ The browser will display the page with the placeholder:
 	  path: '/product?id=1',
 	  href: '/product?id=1' }
 */
-	 ```
+
    - The ES6 syntax to specify both variables would be:
    
 
