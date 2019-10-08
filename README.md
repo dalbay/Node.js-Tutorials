@@ -725,6 +725,15 @@ The browser will display the page with the placeholder:
   - nodemon automatically restarts the node application whenever we make changes to files in the working directory.
   - **```npm install nodemon  --save-dev```**  
   - instead of starting the application in node index.js, start it in nodemon -```nodemon index.js```.
+  - If you don't want to install it globally and local run doesn't work add this script to your package.json file:
+    ```JavaScript
+	"scripts": {
+		"serve": "nodemon server.js"
+	  }
+	```  
+	and then use  
+	```npm run serve```  
+	nodemon will be watching every file for some changes and as soon as you save the file it will automatically run the node application again.
 
 - There are two types of installs of the packages. 
   - Local - will only work in the project. npm saves package in project folder.
