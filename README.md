@@ -585,7 +585,7 @@ The browser will display the page with the placeholder:
  - Implementing the Product Details page:
    - Import the **url model**  
      ```const url = require('url');```
-   - The DETAILS button for a product will add the product ID which was replaced with actual data to the queryString, and navigate to URL: /product  
+   - The DETAILS button for a product will add the product ID which was replaced with actual data to the queryString, and navigate to  url path: /product  
      ```<a class="card__link" href="/product?id={%ID%}">```  
 	 Click on the DETAILS button and console log the output and see what properties the requested url has to offer.  
 	 ```JavaScript
@@ -611,10 +611,10 @@ The browser will display the page with the placeholder:
 	 */	
 	 ```
 
-
-
-
-   - The ES6 syntax to specify both variables would be:
+   - Next, we see that the returned object has two propteries that we can make use of: ```query``` and ```pathname```.  
+     Create two variables for the requesting query and the pathname. The ES6 syntax to specify both variables would be:  
+     **```const { query, pathName} = (url.parse(req.url, true));```**	 
+   
    
 
 
