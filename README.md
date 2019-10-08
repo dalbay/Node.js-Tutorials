@@ -352,21 +352,25 @@ const http = require('http');
 const server = http.createServer((req,res) => { 
     const pathName =  req.url;
     if(pathName === '/' || pathName === '/overview'){
+	// Overview Page
         res.end('This is the OVERVIEW');
+	// Product page
     }else if(pathName === '/product'){
         res.end('This is the PRODUCT');
-    }else if(pathName === '/api'){
+    // API
+    } else if (pathname === '/api') {
         // read the file	
-        fs.readFile(`${__dirname}/dev-data/data.json`,'utf-8', (err, data) => {
-			// parse string data to javascript object
+        fs.readFile(`${__dirname}/dev-data/data.json`, 'utf-8', (err, data) => {
+            // parse string data to javascript object
             const productData = JSON.parse(data);
-			// header object
-            res.writeHead(200,{ 'Content-type': 'application/json'});
-			// this sends back the string data 
+            // header object
+            res.writeHead(200, { 'Content-type': 'application/json' });
+            // this sends back the string data 
             res.end(data);
-			// this logs the javascript object
-			console.log(productData);
+            // this logs the javascript object
+            console.log(productData);
         });
+    // Not  Found
     }else{
         res.writeHead(404, {
             'Content-type':'text/html',
