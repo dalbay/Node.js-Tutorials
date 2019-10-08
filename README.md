@@ -678,8 +678,17 @@ The browser will display the page with the placeholder:
 - used to install and manage open source packages.
 - look up all the package and documentations that are included in the repository at npmjs.com
 <br/>
+
 - the first thing we do to start a new project is to start with:  
-  ```npm init``` - this will create a ***package-json file***. Type in a package name - node suggests a name inside the paranthesis.
+  ```npm init``` - this will create a ***package-json file***. You will be asked:  
+  package name: - node suggests a name you may use inside the paranthesis.  
+  version:    
+  description: type in a description  
+  entry point: (index.js)  
+  test command:  
+  git repository:  
+  keywords:  
+  author:  
 
 
 
