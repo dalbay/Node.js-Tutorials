@@ -590,30 +590,35 @@ The browser will display the page with the placeholder:
 	 Console log the output and see what properties the requested url has to offer.  
 	 ```JavaScript
 	 // Click on Details button - output will be the root:
+	 	 console.log(req.url);
+	/* OUTPUT: 			
+		/product?id=1
+	*/
+		 console.log(req.url);
+	/* OUTPUT: 			
+		/product?id=1
+	*/
+	// Displays the properties for the requested url:
+		 console.log(url.parse(req.url, true));  // -> 'true' arg parses a queryString.
+	/* OUTPUT:            
+		Url {
+		  protocol: null,
+		  slashes: null,
+		  auth: null,
+		  host: null,
+		  port: null,
+		  hostname: null,
+		  hash: null,
+		  search: '?id=1',
+		  query: [Object: null prototype] { id: '1' },
+		  pathname: '/product',
+		  path: '/product?id=1',
+		  href: '/product?id=1' }
+	*/	
 	 ```
 
-// Click on Details button - output will be the root:
-	 console.log(req.url);
-/* OUTPUT: 			
-	/product?id=1
-*/
-// Displays the properties for the requested url:
-	 console.log(url.parse(req.url, true));  // -> 'true' arg parses a queryString.
-/* OUTPUT:            
-	Url {
-	  protocol: null,
-	  slashes: null,
-	  auth: null,
-	  host: null,
-	  port: null,
-	  hostname: null,
-	  hash: null,
-	  search: '?id=1',
-	  query: [Object: null prototype] { id: '1' },
-	  pathname: '/product',
-	  path: '/product?id=1',
-	  href: '/product?id=1' }
-*/
+
+
 
    - The ES6 syntax to specify both variables would be:
    
