@@ -585,13 +585,11 @@ The browser will display the page with the placeholder:
  - Implementing the Product Details page:
    - Import the **url model**  
      ```const url = require('url');```
-   - Click on the DETAILS button for a product. This will add the product ID which was replaced with actual data to the queryString.  
+   - The DETAILS button for a product will add the product ID which was replaced with actual data to the queryString, and navigate to URL: /product  
      ```<a class="card__link" href="/product?id={%ID%}">```  
-	 Console log the output and see what properties the requested url has to offer.  
+	 Click on the DETAILS button and console log the output and see what properties the requested url has to offer.  
 	 ```JavaScript
-	 // Click on Details button
-	 
-	 	 console.log(req.url);
+		 console.log(req.url);
 	 /* OUTPUT - is the root:
 		 /product?id=1
 	 */
