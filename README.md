@@ -674,13 +674,15 @@ The browser will display the page with the placeholder:
 ---
 
 ### Introduction to NPM and the package.json File
+***npm***:  
 - command line interface app and a software repository, that comes with node.js.
 - used to install and manage open source packages.
 - look up all the package and documentations that are included in the repository at npmjs.com
 <br/>
 
 - the first thing we do to start a new project is to start with:  
-  ```npm init``` - this will create a ***package-json file***. You will be asked:  
+  ```npm init``` - this will create a ***package-json file***.  
+  You will be asked:  
   package name: - node suggests a name you may use inside the paranthesis.  
   version:    
   description: type in a description  
@@ -689,6 +691,14 @@ The browser will display the page with the placeholder:
   git repository:  
   keywords:  
   author:  
+
+### Types of Packages and Installs
+- Simple/regular dependancies are packages that contain some code that we can include in our own code. *Code upon which we build our application*. Our code will depend on them to work correctly.  
+  For exampl, express is a dependency.
+
+- Install **Slugify**
+  - to make more readable URL's.  
+  **```npm install slugify```**
 
 
 
