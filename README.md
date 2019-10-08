@@ -576,34 +576,38 @@ The browser will display the page with the placeholder:
 		return output;
 	};
  ```  
- Run the application in node and load the page in the browser:
+ Run the app in node; load the page in the browser -> Output: placeholder is replaced with content.
  ![Dynamic product listing](images/nodeTemp3.png)  
  <br/>
  
  ### Parsing Variables from URL's
  
- - Implement Product Details page
-   - Implement the url model - ```const url = require('url');```
-   - console log the url and see what you need:
+ - Implementing the Product Details page:
+   - Import the **url model** - ```const url = require('url');```
+   - Click on the Details button for a product. This will add a queryString to the URL  
+     ```<a class="card__link" href="/product?id={%ID%}">```  
+	 Console log the output and see what properties the requested url has to offer.
      ```
+--> Click on Details button - output will be the root:
 	 console.log(req.url);
-		 OUTPUT:
-		 /
-	 console.log(url.parse(req.url));
-		 OUTPUT:
-		 Url {
-		  protocol: null,
-		  slashes: null, 
-		  auth: null,    
-		  host: null,    
-		  port: null,    
-		  hostname: null,
-		  hash: null,
-		  search: null,
-		  query: null,
-		  pathname: '/',
-		  path: '/',
-		  href: '/' }
+		 OUTPUT: 			
+		 /product?id=1
+--> output will display the properties for the requested url:
+	 console.log(url.parse(req.url, true));  -> true to parse a queryString.
+		 OUTPUT:            
+	Url {
+	  protocol: null,
+	  slashes: null,
+	  auth: null,
+	  host: null,
+	  port: null,
+	  hostname: null,
+	  hash: null,
+	  search: '?id=1',
+	  query: [Object: null prototype] { id: '1' },
+	  pathname: '/product',
+	  path: '/product?id=1',
+	  href: '/product?id=1' }
 	 ```
    - The ES6 syntax to specify both variables would be:
    
