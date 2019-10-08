@@ -351,8 +351,8 @@ const http = require('http');
 
 const server = http.createServer((req,res) => { 
     const pathName =  req.url;
-    if(pathName === '/' || pathName === '/overview'){
 	// Overview Page
+    if(pathName === '/' || pathName === '/overview'){
         res.end('This is the OVERVIEW');
 	// Product page
     }else if(pathName === '/product'){
@@ -380,8 +380,9 @@ const server = http.createServer((req,res) => {
     }
 });
 ```  
-Restart the server, and add /api to url; this will return the data about the products:
-![NodeJS API](/images/nodeAPI.png)  
+Restart the server, and add path /api to the url; this will return product data in string format to the browser, and logs the products data as a javascript objets to the console.
+![NodeJS API browser](/images/nodeAPI.png)
+![NodeJS API console](/images/nodeAPI1.png)    
 <br/>
 
 
