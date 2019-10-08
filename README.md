@@ -583,8 +583,9 @@ The browser will display the page with the placeholder:
  ### Parsing Variables from URL's
  
  - Implementing the Product Details page:
-   - Import the **url model** - ```const url = require('url');```
-   - Click on the Details button for a product. This will add a queryString to the URL  
+   - Import the **url model**  
+     ```const url = require('url');```
+   - Click on the DETAILS button for a product. This will add the product ID which was replaced with actual data to the queryString.  
      ```<a class="card__link" href="/product?id={%ID%}">```  
 	 Console log the output and see what properties the requested url has to offer.
      ```
