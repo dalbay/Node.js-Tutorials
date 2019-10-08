@@ -641,8 +641,34 @@ The browser will display the page with the placeholder:
         // send output as a response
         res.end(output);	 
 	 ```
-   
-
-
-----------------------------------------
-
+---
+### Create Your Own Modules
+- export functions from them.
+- import a module in another module and use the funcion.
+<br/>
+Assuming we are using the replaceTemplate() function in multiple different javascript files.  
+What we can do is create a module and export that function from it.  
+In node.js every file is treated as a module.  
+Create a new folder "modules" and a file named "replaceTemplate.js"  
+Cut out the replaceTemplate() funcion from the index.js and paste it in the replaceTemplate.js file.  
+To **export** this function from the module we are going to use the module objects export propey **```module.exports```**. Simply assign an anonymous function to it.  
+```JavaScript
+	module.exports = (temp, product) => {
+	  let output = temp.replace(/{%PRODUCTNAME%}/g, product.productName);
+	  output = output.replace(/{%IMAGE%}/g, product.image);
+	  output = output.replace(/{%PRICE%}/g, product.price);
+	  output = output.replace(/{%FROM%}/g, product.from);
+	  output = output.replace(/{%NUTRIENTS%}/g, product.nutrients);
+	  output = output.replace(/{%QUANTITY%}/g, product.quantity);
+	  output = output.replace(/{%DESCRIPTION%}/g, product.description);
+	  output = output.replace(/{%ID%}/g, product.id);
+	  
+	  if(!product.organic) output = output.replace(/{%NOT_ORGANIC%}/g, 'not-organic');
+	  return output;
+	};	
+```  
+**Import** this function to the top of another module with the **```require()```** method. In the require function the dot(.) means current root folder.  
+We can save this function in a const variable. Call the variable 'replaceTemplate' so we don't have to change the code for each instance it was used before.  
+```JavaScript
+	const replaceTemplate = require('./modules/replaceTemplate');
+```
