@@ -641,7 +641,7 @@ The browser will display the page with the placeholder:
         // send output as a response
         res.end(output);	 
 	 ```
----
+
 ### Create Your Own Modules
 - export functions from a module; import it to use it in a different file.
 - In node.js every file is treated as a module.  
@@ -671,3 +671,16 @@ The browser will display the page with the placeholder:
 ```JavaScript
 	const replaceTemplate = require('./modules/replaceTemplate');
 ```
+---
+
+### Introduction to NPM and the package.json File
+- command line interface app and a software repository, that comes with node.js.
+- used to install and manage open source packages.
+- look up all the package and documentations that are included in the repository at npmjs.com
+<br/>
+- the first thing we do to start a new project is to start with:  
+  ```npm init``` - this will create a ***package-json file***. Type in a package name - node suggests a name inside the paranthesis.
+
+
+
+
