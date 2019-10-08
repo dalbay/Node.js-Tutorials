@@ -744,7 +744,8 @@ The browser will display the page with the placeholder:
 	  }
 	}
  	```
-    To start the node application : **```npm run start```** instead of *node index.js*.
+    To start the node application : **```npm run start```** or **```npm start```** instead of *node index.js*.
+	<br/>
   - Global install: **```npm install nodemon  --global```**  
     To start the node application : **```nodemon index.js```** instead of *node index.js*.   
 - The two different types of installs for packages:
