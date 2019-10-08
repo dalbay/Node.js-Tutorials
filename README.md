@@ -589,18 +589,14 @@ The browser will display the page with the placeholder:
      ```<a class="card__link" href="/product?id={%ID%}">```  
 	 Console log the output and see what properties the requested url has to offer.  
 	 ```JavaScript
-	 // Click on Details button - output will be the root:
+	 // Click on Details button
+	 
 	 	 console.log(req.url);
-	/* OUTPUT: 			
-		/product?id=1
-	*/
-		 console.log(req.url);
-	/* OUTPUT: 			
-		/product?id=1
-	*/
-	// Displays the properties for the requested url:
+	 /* OUTPUT - is the root:
+		 /product?id=1
+	 */
 		 console.log(url.parse(req.url, true));  // -> 'true' arg parses a queryString.
-	/* OUTPUT:            
+	 /* OUTPUT - displays the properties for the requested url:
 		Url {
 		  protocol: null,
 		  slashes: null,
@@ -614,7 +610,7 @@ The browser will display the page with the placeholder:
 		  pathname: '/product',
 		  path: '/product?id=1',
 		  href: '/product?id=1' }
-	*/	
+	 */	
 	 ```
 
 
