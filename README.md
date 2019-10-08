@@ -697,9 +697,27 @@ The browser will display the page with the placeholder:
   For exampl, express is a dependency.
 
 - Install **Slugify**
-  - to make more readable URL's.  
-  **```npm install slugify```**
-
-
+  - to make more readable URL's. 
+  - **```npm install slugify```**  
+    You can see in the package.json file that our first dependency is added:
+	```JavaScript
+	{
+	  "name": "farm",
+	  "version": "1.0.0",
+	  "description": "Learning node.js",
+	  "main": "index.js",
+	  "scripts": {
+		"start": "nodemon index.js"
+	  },
+	  "author": "Jonas Schmedtmann",
+	  "license": "ISC",
+	  "dependencies": {
+		"slugify": "^1.3.5"
+	  },
+	  "devDependencies": {
+		"nodemon": "^1.18.11"
+	  }
+	}
+	```
 
 
