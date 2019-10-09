@@ -793,5 +793,10 @@ Here we see all five product slugs in the console. We could store these slugs in
 ##### Delete Packages
 - To delte a package - ```npm uninstall express```
 ##### The node_modules folder:
-When moving the app from one computer to another, this folder will never be shared.
+- This folder contains all of the dependencies of your project.
+- When you want to share your code with someone,  from one computer to another, you will never share this folder because you can easily get it from npm. There is no need to upload all of this code to gitHub, or dropbox for example.  
+- This is how you get this folder to your project:
+  - all you have to do is ```npm install``` -> This will read our package-json file and our dependencies and then download everything into a new node_modules folder.
+  - Check out file **package-lock.json** -> this has a list of all the packages and the versions, also the dependancies of our dependancies.  
+  *When you share your code, check here to make sure everyone is running the same versions of the packages.*
 
