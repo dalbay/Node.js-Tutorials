@@ -761,9 +761,25 @@ When declaring modules in the node application we usually declare core modules f
 2. require the module in the application with the ```require()``` function.
 
 ##### Example:
-Require the slugify module which was installed ealier to the application.
+Require the slugify module which was installed ealier to the application; Look up documentation for methods and how to use it.
 ```JavaScript
+// Create an array of all the slugs for the products 
+const slugs = dataObj.map(element => slugify(element.productName, { lower: true }));
+console.log(slugs);
 
-```
+/*OUTPUT:
+Listening to requests on port 8000
+[nodemon] restarting due to changes...
+[nodemon] starting `node index.js`
+[ 'fresh-avocados',
+  'goat-and-sheep-cheese',
+  'apollo-broccoli',
+  'baby-carrots',
+  'sweet-corncobs' ]
+Listening to requests on port 8000
+*/
+```  
+Here we see all five product slugs in the console. We could store these slugs in data.json, and then build the app to display the slug instead of the id in the URL.
+
 
 - se
