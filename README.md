@@ -1,7 +1,6 @@
 
-
+## Introduction to Node.js and NPM
 ### Install Node.js:
-
 
  ![nodeJS image](/images/nodeImg.png)
 
@@ -780,19 +779,21 @@ Listening to requests on port 8000
 */
 ```  
 Here we see all five product slugs in the console. We could store these slugs in data.json, and then build the app to display the slug instead of the id in the URL.
+<br/>
+
 
 ##### Check Outdated Packages:
-- ```npm outdated``` -> this gives us a table of updated packages
+- ```npm outdated``` -> this gives us a table of outdated packages
 ##### Installing Packages with certain version:
 - ```npm install slugify@1.0.0```
 ##### Update Packages
 - ```npm updated slugify```  
-- Change the updating configuration by adding **^** infront of the version number after you installed a certain version; the ^ symbol means - accepting minor and patched releases. Run ```npm update slugify``` again. This will add minor and patched releases to the current package. This is also the default.
-- To get ALL versions use the ***** -  ```"slugify": "*1.3.5"```
-- The safest updating configuration is **~** - ```"slugify": "~1.3.5"``` - for bug fixes.
+- Change the updating configuration by adding **^** infront of the version number after you installed a certain version; the ^ symbol means - accepting minor and patched releases. Run ```npm update slugify``` again. This will adds minor and patched releases to the current package. This is also the default.
+- To get ALL versions use an asterisk - ```"slugify": "*1.3.5"```
+- The safest updating configuration is to use a tilde **~** - ```"slugify": "~1.3.5"``` - for bug fixes.
 ##### Delete Packages
 - To delte a package - ```npm uninstall express```
-##### The node_modules folder:
+#### The node_modules folder:
 - This folder contains all of the dependencies of your project.
 - When you want to share your code with someone,  from one computer to another, you will never share this folder because you can easily get it from npm. There is no need to upload all of this code to gitHub, or dropbox for example.  
 - This is how you get this folder to your project:
@@ -800,3 +801,8 @@ Here we see all five product slugs in the console. We could store these slugs in
   - Check out file **package-lock.json** -> this has a list of all the packages and the versions, also the dependancies of our dependancies.  
   *When you share your code, check here to make sure everyone is running the same versions of the packages.*
 
+
+## Introduction to Back-End Web Development
+
+### How the Backend Works
+![Web Theory](/images/nodeTheory.png);
