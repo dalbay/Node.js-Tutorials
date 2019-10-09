@@ -800,9 +800,23 @@ Here we see all five product slugs in the console. We could store these slugs in
   - all you have to do is ```npm install``` -> This will read our package-json file and our dependencies and then download everything into a new node_modules folder.
   - Check out file **package-lock.json** -> this has a list of all the packages and the versions, also the dependancies of our dependancies.  
   *When you share your code, check here to make sure everyone is running the same versions of the packages.*
+  <br/>
+  
 
 
 ## Introduction to Back-End Web Development
 
-### How the Backend Works
-![Web Theory](/images/nodeTheory.png);
+#### How the Backend Works - What happens when we access a web page:
+![Web Theory](/images/nodeTheory.png)
+#### Front-end and Back-End
+![Web Theory front/back end](/images/nodeTheory1.png)
+#### Static Websites vs Dynamic Websites
+![Web Theory static/dynamic websites](/images/nodeTheory2.png)
+Because of how powerful browser's have become on the client side, we see more and more websites based on API's. API's powered websites are similar to a dynamic websites. The big difference is that with API we only send the data to the browser, usually in JSON data format, and not the entire website(no html or css).  
+When building API powered websites, there is always these two steps - Building API and Consuming API.  
+The building phase of a website moved from the back-end to the front-end. This is why dynamic websites are also called Server-Side Rendered and Client-Side Rendered.  
+For back-end developers it is much easier to build an API and let the front end people build the site. Node is great tool to build API's and dynamic server side rendered websites.  
+API's can also be consumed by other clients than just the browser. 
+#### Dynamic Websites vs API-Powered Websites
+![Web Theory API/Dynamic websites](/images/nodeTheory3.png)
+
