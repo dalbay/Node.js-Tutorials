@@ -781,5 +781,17 @@ Listening to requests on port 8000
 ```  
 Here we see all five product slugs in the console. We could store these slugs in data.json, and then build the app to display the slug instead of the id in the URL.
 
+##### Check Outdated Packages:
+- ```npm outdated``` -> this gives us a table of updated packages
+##### Installing Packages with certain version:
+- ```npm install slugify@1.0.0```
+##### Update Packages
+- ```npm updated slugify```  
+- Change the updating configuration by adding **^** infront of the version number after you installed a certain version; the ^ symbol means - accepting minor and patched releases. Run ```npm update slugify``` again. This will add minor and patched releases to the current package. This is also the default.
+- To get ALL versions use the ***** -  ```"slugify": "*1.3.5"```
+- The safest updating configuration is **~** - ```"slugify": "~1.3.5"``` - for bug fixes.
+##### Delete Packages
+- To delte a package - ```npm uninstall express```
+##### The node_modules folder:
+When moving the app from one computer to another, this folder will never be shared.
 
-- se
