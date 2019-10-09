@@ -693,13 +693,15 @@ The browser will display the page with the placeholder:
   author:  
 
 ### Types of Packages and Installs
-- Simple/regular dependancies are packages that contain some code that we can include in our own code. *Code upon which we build our application*. Our code will depend on them to work correctly.  
+- **Simple/regular dependancies** are packages that contain some code that we can include in our own code. *Code upon which we build our application*. Our code will depend on them to work correctly.  
   For example, express is a dependency.
-- Development dependencies - tools for development.   
+- **Development dependencies** - tools for development.   
   For example, testing tool, debugger,...
 
-- Install **Slugify**
-  - to make more readable URL's. 
+- **Slugify**
+  - to make more readable URL's.  
+    For example instead of */product?id=1* we could have */product/fresh-avocados* in the URL.
+  - Look up documentation for usage  
   - **```npm install slugify```**  
     You can see in the package.json file that our first dependency is added:
 	```JavaScript
@@ -721,7 +723,7 @@ The browser will display the page with the placeholder:
 	  }
 	}
 	```
-- Install **nodemon** - a development dependancy.
+- **nodemon** - a development dependancy.
   - nodemon automatically restarts the node application whenever we make changes to files in the working directory and save it.
   - Local install: **```npm install nodemon  --save-dev```**
   - nodemon will add a devDependencies and a scripts element to the package.json file:  
@@ -746,8 +748,22 @@ The browser will display the page with the placeholder:
  	```
     To start the node application : **```npm run start```** or **```npm start```** instead of *node index.js*.
 	<br/>
+	
   - Global install: **```npm install nodemon  --global```**  
     To start the node application : **```nodemon index.js```** instead of *node index.js*.   
 - The two different types of installs for packages:
   - Local - will only work in the project. npm saves package in project folder.
   - Global - packages will be available in any folder in our machine.
+
+### 3rd Party Modules
+When declaring modules in the node application we usually declare core modules first, then 3rd party modules and lastly our own modules.  
+1. First install the module
+2. require the module in the application with the ```require()``` function.
+
+##### Example:
+Require the slugify module which was installed ealier to the application.
+```JavaScript
+
+```
+
+- se
