@@ -821,3 +821,24 @@ API's can also be consumed by other clients than just the browser (native mobile
 #### Dynamic Websites vs API-Powered Websites
 ![Web Theory API/Dynamic websites](/images/nodeTheory3.png)
 
+## How Node.js Works
+### Events and Event Driven Architecture:
+Node is built on an event driven architecture. This is how we can make use of the architecture in our code:  
+- **Event Emitters**: Node objects; These emit named events when something has happened in the app. Like a request hitting a server; a timer expiring; file finishing to read. 
+- **Even Listeners**: These events can then be picked up by event listeners, that we developers set up which will fire off the callback functions that are attached to each listener. 
+<br/>
+Example:  
+How node uses the event driven architecture, to handle server requests and the http module. 
+- When we want to create a server we use the createServer() method and save it to a server variable. This implementation is a little different.
+- The server.on creates a event listener, and in this case for the request event. 
+- So, lets say the server is running and a new request is made; 
+  o	the server acts as a Emitter and will automatically emit an event called request 
+  o	then since we have a listener set up for this request, the callback function that we have attached to this listener will automatically be called; it will simply send some data back. 
+<br/>
+It works this way because *the server is an instance of the node.js Even Emitter class*; so, it inherits all the event emitting and event listening logic. 
+<br/>
+This event emitting logic is called ***The Observer Pattern***. The idea to have an observer, in this case the event listener, which keeps waiting/observing the subject that will eventually emit the event that the listener is listening for. The opposite of this pattern is functions calling other functions.  
+<br/>
+The observer pattern has been designed to react rather then to call. The benefit to use this architecture is the fact that everything is more decoupled. We don’t have for example functions from the file system module calling functions from the http module. Instead these modules are nicely decoupled and self-contained. 
+
+
