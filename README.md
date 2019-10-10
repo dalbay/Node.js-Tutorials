@@ -890,6 +890,8 @@ Example for
 	Customer name: Jonas
 	```  
 Note that our EMITTER could also emit other events, like New Customer, or New Order or something like that and we could add LISTENERS for these as well.  
+<br/>
+
 We could also pass arguments to the event listeners, by passing them as additional arguments in the emitter; and have a listener that wants to use that inside the callback function.  
 Example: here we pass the amount of items that are left.  
 ```JavaScript
@@ -904,4 +906,45 @@ Example: here we pass the amount of items that are left.
 		> node events.js
 	  There are now 9 items left in stock
 ```
-  
+##### Using the Observer Pattern in Real-life:
+ - Create a new class that inherits from the node event emitter
+```JavaScript
+	class Sales extends EventEmitter {
+	  constructor() {
+		super();
+	  }
+	}
+
+	const myEmitter = new Sales();
+```
+**Example**:  
+- demonstrates that the http module is based on event
+- create a web server and listen to the event that it emits:
+```JavaScript
+	const http = require("http");
+	const server = http.createServer();
+
+	//when you see on() -> listenin to an event, here request event
+	  console.log("Request received!");
+	server.on("request", (req, res) => { 
+	  console.log(req.url);
+	  res.end("Request received");
+	});
+
+	// listening to another request event:
+	server.on("request", (req, res) => {
+	  console.log("Another request 😀");
+	});
+
+	//listening to a close event:
+	server.on("close", () => {
+	  console.log("Server closed");
+	});
+
+	// start the server: 
+	server.listen(8000, "127.0.0.1", () => {
+	  console.log("Waiting for requests...");
+	});
+```  
+
+
