@@ -836,12 +836,12 @@ How node uses the event driven architecture, to handle server requests and the h
 - The server.on creates a event listener, and in this case for the request event. 
 - So, lets say the server is running and a new request is made; 
   - the server acts as a Emitter and will automatically emit an event called request 
-  -	then since we have a listener set up for this request, the callback function that we have attached to this listener will automatically be called; it will simply send some data back. 
-<br/>
-It works this way because *the server is an instance of the node.js Even Emitter class*; so, it inherits all the event emitting and event listening logic. 
-<br/>
+  -	then since we have a listener set up for this request, the callback function that we have attached to this listener will automatically be called; it will simply send some data back.  
+
+It works this way because *the server is an instance of the node.js Even Emitter class*; so, it inherits all the event emitting and event listening logic.  
+
 This event emitting logic is called ***The Observer Pattern***. The idea to have an observer, in this case the event listener, which keeps waiting/observing the subject that will eventually emit the event that the listener is listening for. The opposite of this pattern is functions calling other functions.  
-<br/>
+
 The observer pattern has been designed to react rather then to call. The benefit to use this architecture is the fact that everything is more decoupled. We don’t have for example functions from the file system module calling functions from the http module. Instead these modules are nicely decoupled and self-contained. 
 
 
