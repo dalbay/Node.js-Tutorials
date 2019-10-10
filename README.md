@@ -825,10 +825,12 @@ API's can also be consumed by other clients than just the browser (native mobile
 ### Events and Event Driven Architecture:
 Node is built on an event driven architecture. This is how we can make use of the architecture in our code:  
 - **Event Emitters**: Node objects; These emit named events when something has happened in the app. Like a request hitting a server; a timer expiring; file finishing to read. 
-- **Even Listeners**: These events can then be picked up by event listeners, that we developers set up which will fire off the callback functions that are attached to each listener. 
-<br/>
+- **Even Listeners**: These events can then be picked up by event listeners, that we developers set up which will fire off the callback functions that are attached to each listener.  
+
+
 **Example**:  
-<br/>
+
+
 How node uses the event driven architecture, to handle server requests and the http module.
 - When we want to create a server we use the createServer() method and save it to a server variable. This implementation is a little different.
 - The server.on creates a event listener, and in this case for the request event. 
