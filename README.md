@@ -828,6 +828,7 @@ Node is built on an event driven architecture. This is how we can make use of th
 - **Even Listeners**: These events can then be picked up by event listeners, that we developers set up which will fire off the callback functions that are attached to each listener. 
 <br/>
 Example:  
+<br/>
 How node uses the event driven architecture, to handle server requests and the http module. 
 - When we want to create a server we use the createServer() method and save it to a server variable. This implementation is a little different.
 - The server.on creates a event listener, and in this case for the request event. 
