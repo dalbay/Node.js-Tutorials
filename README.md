@@ -893,6 +893,15 @@ Note that our EMITTER could also emit other events, like New Customer, or New Or
 We could also pass arguments to the event listeners, by passing them as additional arguments in the emitter; and have a listener that wants to use that inside the callback function.  
 Example: here we pass the amount of items that are left.  
 ```JavaScript
+// Set up listener for New Sales Event with arguments
+	myEmitter.on("newSales", stockAmount => {
+	  console.log(`There are now ${stockAmount} items left in stock`);
+	});
 
+// passing arguments with the New Sales Event
+	myEmitter.emit("newSales", 9);
+	OUTPUT:
+		> node events.js
+	  There are now 9 items left in stock
 ```
   
