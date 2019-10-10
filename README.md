@@ -834,6 +834,7 @@ Node is built on an event driven architecture. This is how we can make use of th
 How node uses the event driven architecture, to handle server requests and the http module.
 - When we want to create a server we use the createServer() method and save it to a server variable. Here the implementation is a little different.
 ```JavaScript
+	const http = require("http");
 	const server = http.createServer();
 
 	server.on("request", (req, res) => {
@@ -854,6 +855,7 @@ The observer pattern has been designed to react rather then to call. The benefit
 With Event Emitters, we can also set up multiple listeners for the same event.
 
 ### Events in Practice:
+Example for 
 - To use the build in node events we need to require the event module.
   ```JavaScript
   const EventEmitter = require("events");
@@ -864,16 +866,33 @@ With Event Emitters, we can also set up multiple listeners for the same event.
   ```  
 *Note: Event Emitters can emit named events, and we can than subscribe to this event(listen to them), and then react accordingly. This is like setting up an event listener on a DOM element, for example for clicking on a button.*   
 
-- Make up an event name with the ```emit()``` method. Here for example we create an event for an online store.
+- Make up an event name with the **```emit()```** method. Here for example we create an event for an online store. *This is the EMITTER (emits the event New Sales Event)*
   ```JavaScript
   myEmitter.emit("newSale");
   ```  
-- Now we have to set up the listener for that event with the```on```method and the callback function that will executed as soon as this event is emitted.
+- Now we have to set up the listener for that event with the **```on()```** method and the callback function that will executed as soon as this event is emitted. *This on() is the OBSERVER; (it observes the emitter until it emits the New Sale Event.)*
   ```JavaScript
   myEmitter.on('newSale', () => {
     console.log('There was a new sale!');
   });
   ```
-- Set up another listener for the same event
-  
+- Set up another listener for the same event. *This on() is also the OBSERVER; (it observes the emitter until it emits the New Sale Event.)*
+  ```JavaScript
+  myEmitter.on('newSale', () =>  {
+    console.log("Customer name: Jonas");
+  });
+  ```  
+  Run the file:  
+  ```JavaScript
+  OUTPUT:
+	  > node events.js
+	There was a new sale!
+	Customer name: Jonas
+	```  
+Note that our EMITTER could also emit other events, like New Customer, or New Order or something like that and we could add LISTENERS for these as well.  
+We could also pass arguments to the event listeners, by passing them as additional arguments in the emitter; and have a listener that wants to use that inside the callback function.  
+Example: here we pass the amount of items that are left.  
+```JavaScript
+
+```
   
