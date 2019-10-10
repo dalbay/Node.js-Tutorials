@@ -842,6 +842,30 @@ It works this way because *the server is an instance of the node.js Even Emitter
 
 This event emitting logic is called ***The Observer Pattern***. The idea to have an observer, in this case the event listener, which keeps waiting/observing the subject that will eventually emit the event that the listener is listening for. The opposite of this pattern is functions calling other functions.  
 
-The observer pattern has been designed to react rather then to call. The benefit to use this architecture is the fact that everything is more decoupled. We don’t have for example functions from the file system module calling functions from the http module. Instead these modules are nicely decoupled and self-contained. 
+The observer pattern has been designed to react rather then to call. The benefit to use this architecture is the fact that everything is more decoupled. We don’t have for example functions from the file system module calling functions from the http module. Instead these modules are nicely decoupled and self-contained.  
+With Event Emitters, we can also set up multiple listeners for the same event.
 
+### Events in Practice:
+- To use the build in node events we need to require the event module.
+  ```JavaScript
+  const EventEmitter = require("events");
+  ```
+- In order to create a new emitter, we are going to create an instance of that class.
+  ```JavaScript
+  const myEmitter = new EventEmitter();
+  ```  
+*Note: Event Emitters can emit named events, and we can than subscribe to this event(listen to them), and then react accordingly. This is like setting up an event listener on a DOM element, for example for clicking on a button.*   
 
+- Make up an event name with the ```emit()``` method. Here for example we create an event for an online store.
+  ```JavaScript
+  myEmitter.emit("newSale");
+  ```  
+- Now we have to set up the listener for that event with the```on```method and the callback function that will executed as soon as this event is emitted.
+  ```JavaScript
+  myEmitter.on('newSale', () => {
+    console.log('There was a new sale!');
+  });
+  ```
+- Set up another listener for the same event
+  
+  
