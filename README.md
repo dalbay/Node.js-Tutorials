@@ -1009,7 +1009,7 @@ server.on("request", (req, res) => {
 */
   const readable = fs.createReadStream("test-file.txt");
   readable.on("data", chunk => {
-  // handle the data (chunk) write it to a writeable stream which is the response(the response is a writable stream).
+    // handle the data (chunk) write it to a writeable stream which is the response(the response is a writable stream).
     res.write(chunk);
   });
 
@@ -1042,5 +1042,11 @@ server.on("request", (req, res) => {
 server.listen(8000, "127.0.0.1", () => {
   console.log("Listening...");
 });
-```
+```  
+### How Requiring Modules Really Works
+Each JavaScript ﬁle is treated as a separate module; 
+👉 Node.js uses the CommonJS module system: require(), exports or module.exports; 
+👉 ES module system is used in browsers: import/export; 
+👉 There have been attempts to bring ES modules to node.js (.mjs).
+
 
