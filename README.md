@@ -970,11 +970,14 @@ Another request
    - drain
    - finish
  - We can react to these events accordingly. 
- - There are alos important functions that we can use on streams; for example the read() and pipe() - allows us to plug streams together,passing data from one stream to another. functions.
+ - There are also important functions that we can use on streams; for example the read() and pipe() - allows us to plug streams together,passing data from one stream to another. functions.
  
- |    stream     | Descripttion  | Example  |Important Events  | Important Functions |
-| ------------- |:-------------:| -----:|:-------------:|:-------------:|
+|    stream    | Descripttion  | Example  |Important Events  | Important Functions |
+| ------------- |-------------| -----|:-------------:|:-------------:|
 | Readable Streams  | Streams from which we can read(consume) data | http requests<br/>fs read streams | data<br/>end  | pipe()<br/>  read() |
 | Writable Streams  | Streams to which we can write data | http responses<br/>fs write streams | drain<br/>finish  | write()<br/>  end() |
 | Dublex Streams  | Streams that are both readable and writable | new web socket: comunication channel between client/server |   | |
 | Transform Streams  | Dublex streams that transform data as it is written or read | zlib Gzip creation |   | |
+Note that these events and functions are for consuming streams that are already implemented; like the once in the example column.  
+For example, node implemented the http requests and responses as streams; and so we can consume them with the events and functions for each stream.
+
