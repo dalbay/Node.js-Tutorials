@@ -906,7 +906,7 @@ Example: here we pass the amount of items that are left.
 		> node events.js
 	  There are now 9 items left in stock
 ```
-##### Using the Observer Pattern in Real-life:
+#### Using the Observer Pattern in Real-life:
  - Create a new class that inherits from the node event emitter
 ```JavaScript
 	class Sales extends EventEmitter {
@@ -925,15 +925,14 @@ Example: here we pass the amount of items that are left.
 	const server = http.createServer();
 
 	//when you see on() -> listenin to an event, here request event
-	  console.log("Request received!");
 	server.on("request", (req, res) => { 
 	  console.log(req.url);
 	  res.end("Request received");
 	});
 
-	// listening to another request event:
+	// listening to another request event: (only 1 resonse possible.)
 	server.on("request", (req, res) => {
-	  console.log("Another request 😀");
+	  console.log("Another request");
 	});
 
 	//listening to a close event:
@@ -946,5 +945,20 @@ Example: here we pass the amount of items that are left.
 	  console.log("Waiting for requests...");
 	});
 ```  
-
+Run the file in terminal:
+Output: ```Waiting for requests...```  
+The application is not shoting down, because the event loop is still waiting for IO.  
+Make a request on port 8000 on the localhose url - http://127.0.0.1:8000/  
+Here is the response in the borwser:  
+![Node request](images/nodeRequest.png)  
+Here is the output in the console:
+```JavaScript
+	/
+	Another request
+	/favicon.ico  		// -> browsers automatically request favicon.
+	Another request
+```
+**Note:**  
+  When we use custom events in the application we have to emit the events ourself.  
+  But when we are using a build in node modules, then these functions will emit their own events and all we have to do is to listen to them. 
 
