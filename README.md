@@ -972,7 +972,7 @@ Another request
  - We can react to these events accordingly. 
  - There are also important functions that we can use on streams; for example the read() and pipe() - allows us to plug streams together,passing data from one stream to another. functions.
  
-|stream|Descripttion|Example|Important Events|Important Functions|
+|Stream|Descripttion|Example|Important Events|Important Functions|
 |------|------------|-------|:--------------:|:-----------------:|
 |Readable Streams| Streams from which we can read(consume) data | http requests<br/>fs read streams | data<br/>end  | pipe()<br/>  read() |
 |Writable Streams| Streams to which we can write data | http responses<br/>fs write streams | drain<br/>finish  | write()<br/>  end() |
@@ -984,5 +984,63 @@ Note that these events and functions are for consuming streams that are already 
 For example, node implemented the http requests and responses as streams; and so we can consume them with the events and functions for each stream.  
 
 ### Streams in Practice
+```JavaScript
+const fs = require("fs");
+// shortcut for creating a server:
+const server = require("http").createServer();
 
+server.on("request", (req, res) => {
+  /* Solution 1
+     This is the easiest solution. 
+	 Simply read the file into a variable and send it to the client. 
+  */
+  fs.readFile("test-file.txt", (err, data) => {
+    if (err) console.log(err);
+    res.end(data);
+  });
+  /* The issue with this solution is that node has to load the entire file into memory, because only after that is ready it can then send that data. 
+     This could be a problem when the file is big or when there are lots of request hitting the server. 
+	 The node process will quickly run out of resouces. This would work fine if we create something locally but not in real production environment.
+  */
+
+  /* Solution 2: Streams
+     We really don't need to read the file into a variable. We can just stream the content of the file straight to the client.
+	 When we recieve chunks of data, we send it to the client as a response, which is a writable stream. 
+  */
+  const readable = fs.createReadStream("test-file.txt");
+  readable.on("data", chunk => {
+  // handle the data (chunk) write it to a writeable stream which is the response(the response is a writable stream).
+    res.write(chunk);
+  });
+
+  // We also need to handle the event when all the data is read (stream is finished reading the data from the file.) - emit the end event. 
+  readable.on("end", () => {
+    res.end();
+  });
+
+  // We can also listen to the error event.
+  readable.on("error", err => {
+    console.log(err);
+    res.statusCode = 500;
+    res.end("File not found!");
+  });
+
+  /* There is also a problem with this approach. 
+     The problem is that our readable stream is much faster than sending the result. This problem is called Back Pressure.
+  */  
+
+  /* Solution 3
+     Make use of the pipe operator. This operator is available on all readable streams. 
+	 This allows us to pipe the output of a readable steam right into the input of a writable stream. 
+	 This will fix the problem of that pressure.
+  */
+  const readable = fs.createReadStream("test-file.txt");
+  // this is the response:
+    readable.pipe(res);
+  });
+
+server.listen(8000, "127.0.0.1", () => {
+  console.log("Listening...");
+});
+```
 
