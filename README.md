@@ -970,6 +970,6 @@ Another request
  
  |    stream     | Descripttion  | Example  |Important Events  | Important Functions |
 | ------------- |:-------------:| -----:|:-------------:|:-------------:|
-| Readable Streams  | Streams from which we can read(consume) data | - http requests  - fs read stream |  - data  - end  | pipe()  read() |
+| Readable Streams  | Streams from which we can read(consume) data | http requests<br/>fs read stream | data<br/>end  | pipe()<br/>  read() |
 | Readable Streams  | Streams from which we can read(consume) data | - http requests  - fs read stream |  - data  - end  | pipe()  read() |
  
