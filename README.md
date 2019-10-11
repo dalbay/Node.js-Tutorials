@@ -990,13 +990,13 @@ const fs = require("fs");
 const server = require("http").createServer();
 
 server.on("request", (req, res) => {
-  /* Solution 1
-     This is the easiest solution.
+/* Solution 1
+This is the easiest solution.
 Simply read the file into a variable and send it to the client. 
-  */
+*/
   fs.readFile("test-file.txt", (err, data) => {
-    if (err) console.log(err);
-    res.end(data);
+	if (err) console.log(err);
+	res.end(data);
   });
   /* The issue with this solution is that node has to load the entire file into memory, because only after that is ready it can then send that data. 
      This could be a problem when the file is big or when there are lots of request hitting the server. 
