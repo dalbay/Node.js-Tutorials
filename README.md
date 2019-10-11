@@ -946,12 +946,12 @@ Example: here we pass the amount of items that are left.
 	});
 ```  
 Run the file in terminal:  
-Output: ```Waiting for requests...```  
+Output in the console: ```Waiting for requests...```  
 The application is not shutting down, because the event loop is still waiting for IO.  
 Make a request on port 8000 on the localhose url - http://127.0.0.1:8000/  
 Here is the response in the borwser:  
 ![Node request](images/nodeRequest.png)  
-Here is the output in the console:
+Output in the console:
 ```JavaScript
 /
 Another request
@@ -962,3 +962,14 @@ Another request
   When we use custom events in the application we have to emit the events ourself.  
   But when we are using a build in node modules, then these functions will emit their own events and all we have to do is to listen to them. 
 
+### Intro to Streams
+ - Streams are instances of the EventEmitter class
+ - We can listend to many different events but the most important events are data(when there is new piece of data to consume) and end. 
+ - We can react to these events accordingly. 
+ - There are alos important functions that we can use on streams; for example the read() and pipe() - allows us to plug streams together,passing data from one stream to another. functions.
+ 
+ |    stream     | Descripttion  | Example  |Important Events  | Important Functions |
+| ------------- |:-------------:| -----:|
+| Readable Streams  | Streams from which we can read(consume) data | - http requests  - fs read stream |  - data  - end  | pipe()  read() |
+| Readable Streams  | Streams from which we can read(consume) data | - http requests  - fs read stream |  - data  - end  | pipe()  read() |
+ 
