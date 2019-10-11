@@ -945,18 +945,18 @@ Example: here we pass the amount of items that are left.
 	  console.log("Waiting for requests...");
 	});
 ```  
-Run the file in terminal:
+Run the file in terminal:  
 Output: ```Waiting for requests...```  
-The application is not shoting down, because the event loop is still waiting for IO.  
+The application is not shutting down, because the event loop is still waiting for IO.  
 Make a request on port 8000 on the localhose url - http://127.0.0.1:8000/  
 Here is the response in the borwser:  
 ![Node request](images/nodeRequest.png)  
 Here is the output in the console:
 ```JavaScript
-	/
-	Another request
-	/favicon.ico  		// -> browsers automatically request favicon.
-	Another request
+/
+Another request
+/favicon.ico  		-> browsers automatically makes request for favicon.
+Another request
 ```
 **Note:**  
   When we use custom events in the application we have to emit the events ourself.  
