@@ -1044,9 +1044,11 @@ server.listen(8000, "127.0.0.1", () => {
 });
 ```  
 ### How Requiring Modules Really Works
-Each JavaScript ﬁle is treated as a separate module; 
-👉 Node.js uses the CommonJS module system: require(), exports or module.exports; 
-👉 ES module system is used in browsers: import/export; 
-👉 There have been attempts to bring ES modules to node.js (.mjs).
+***The Common JS Module System***  
+👉 Each JavaScript ﬁle is treated as a separate module;  
+👉 Node.js uses the **CommonJS module system:** ```require(), exports or module.exports```; It works well on the server.  
+👉 **ES module system** is used in browsers: ```import/export```; Ecma script - developed to work in the browser.  
+👉 There have been attempts to bring ES modules to node.js (.mjs).  
+
 
 
