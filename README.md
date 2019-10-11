@@ -1051,8 +1051,60 @@ server.listen(8000, "127.0.0.1", () => {
 👉 There have been attempts to bring ES modules to node.js (.mjs).  
 
 ***What Happens When We Require A Module***  
-![NOde modules](images/nodeModule.png)
+- Resolving & Loading:  
+![Node modules](images/nodeModule.png)
+***Wrapping: ***
+- Wrapping:  
+![Node module wrapping](images/nodeModule1.png)  
+```JavaScript
+// arguments - retrieves all five arguments of the wrapper function:
+// exports, require, module, __filename, __dirname
+console.log(arguments);
 
+OUTPUT:
+> node modules.js
+	[Arguments] {
+	  '0': {},
+	  '1':
+	   { [Function: require]
+		 resolve: { [Function: resolve] paths: [Function: paths] },
+		 main:
+		  Module {
+			id: '.',
+			exports: {},
+			parent: null,
+			filename:
+			 'C:\\Users\\aygun\\OneDrive\\Documents\\Udemy\\The Complete Bootcamp2019\\complete-nde-bootcamp-master\\complete-node-bootcamp-master\\2-how-node-works\\final\\modules.js',     
+			loaded: false,
+			children: [],
+			paths: [Array] },
+		 extensions:
+		  [Object: null prototype] { '.js': [Function], '.json': [Function], '.node': [Function] ,
+		 cache:
+		  [Object: null prototype] {
+			'C:\\Users\\aygun\\OneDrive\\Documents\\Udemy\\The Complete Bootcamp2019\\complete-noe-bootcamp-master\\complete-node-bootcamp-master\\2-how-node-works\\final\\modules.js': [Modue] } },
+	  '2':
+	   Module {
+		 id: '.',
+		 exports: {},
+		 parent: null,
+		 filename:
+		  'C:\\Users\\aygun\\OneDrive\\Documents\\Udemy\\The Complete Bootcamp2019\\complete-nodebootcamp-master\\complete-node-bootcamp-master\\2-how-node-works\\final\\modules.js',
+		 loaded: false,
+		 children: [],
+		 paths:
+		  [ 'C:\\Users\\aygun\\OneDrive\\Documents\\Udemy\\The Complete Bootcamp2019\\complete-noe-bootcamp-master\\complete-node-bootcamp-master\\2-how-node-works\\final\\node_modules',    
+			'C:\\Users\\aygun\\OneDrive\\Documents\\Udemy\\The Complete Bootcamp2019\\complete-noe-bootcamp-master\\complete-node-bootcamp-master\\2-how-node-works\\node_modules',
+			'C:\\Users\\aygun\\OneDrive\\Documents\\Udemy\\The Complete Bootcamp2019\\complete-noe-bootcamp-master\\complete-node-bootcamp-master\\node_modules',
+			'C:\\Users\\aygun\\OneDrive\\Documents\\Udemy\\The Complete Bootcamp2019\\complete-noe-bootcamp-master\\node_modules',
+			'C:\\Users\\aygun\\node_modules',
+			'C:\\Users\\node_modules',
+			'C:\\node_modules' ] },
+	  '3':
+	   'C:\\Users\\aygun\\OneDrive\\Documents\\Udemy\\The Complete Bootcamp2019\\complete-node-boootcamp-master\\complete-node-bootcamp-master\\2-how-node-works\\final\\modules.js',
+	  '4':
+	   'C:\\Users\\aygun\\OneDrive\\Documents\\Udemy\\The Complete Bootcamp2019\\complete-node-boootcamp-master\\complete-node-bootcamp-master\\2-how-node-works\\final' }
+```
 
 
 
