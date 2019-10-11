@@ -991,8 +991,8 @@ const server = require("http").createServer();
 
 server.on("request", (req, res) => {
 /* Solution 1
-This is the easiest solution.
-Simply read the file into a variable and send it to the client. 
+   This is the easiest solution.
+   Simply read the file into a variable and send it to the client. 
 */
   fs.readFile("test-file.txt", (err, data) => {
 	if (err) console.log(err);
