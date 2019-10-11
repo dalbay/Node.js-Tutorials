@@ -969,7 +969,7 @@ Another request
  - There are alos important functions that we can use on streams; for example the read() and pipe() - allows us to plug streams together,passing data from one stream to another. functions.
  
  |    stream     | Descripttion  | Example  |Important Events  | Important Functions |
-| ------------- |:-------------:| -----:|
+| ------------- |:-------------:| -----:|:-------------:|:-------------:|
 | Readable Streams  | Streams from which we can read(consume) data | - http requests  - fs read stream |  - data  - end  | pipe()  read() |
 | Readable Streams  | Streams from which we can read(consume) data | - http requests  - fs read stream |  - data  - end  | pipe()  read() |
  
