@@ -1050,5 +1050,9 @@ server.listen(8000, "127.0.0.1", () => {
 👉 **ES module system** is used in browsers: ```import/export```; Ecma script - developed to work in the browser.  
 👉 There have been attempts to bring ES modules to node.js (.mjs).  
 
+***What Happens When We Require A Module***  
+![NOde modules](images/nodeModule.png)
+
+
 
 
