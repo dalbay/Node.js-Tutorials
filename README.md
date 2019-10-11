@@ -1053,7 +1053,6 @@ server.listen(8000, "127.0.0.1", () => {
 ***What Happens When We Require A Module***  
 - Resolving & Loading:  
 ![Node modules](images/nodeModule.png)
-***Wrapping: ***
 - Wrapping:  
 ![Node module wrapping](images/nodeModule1.png)  
 ```JavaScript
@@ -1105,6 +1104,50 @@ OUTPUT:
 	  '4':
 	   'C:\\Users\\aygun\\OneDrive\\Documents\\Udemy\\The Complete Bootcamp2019\\complete-node-boootcamp-master\\complete-node-bootcamp-master\\2-how-node-works\\final' }
 ```
+**Example:**  
+- Create a module(javascript file) and add a class.
+- export this module:
+```JavaScript
+	class Calculator {
+	  add(a, b) {
+		return a + b;
+	  }
+
+	  multiply(a, b) {
+		return a * b;
+	  }
+
+	  divide(a, b) {
+		return a / b;
+	  }
+	}
+	// export one single value
+	module.exports = Calculator;
+```  
+- A more elegant way would be a class expression instead of declaring a class and assigning the class  directly to module.exports.  
+```JavaScript
+	module.exports = class {
+	  add(a, b) {
+		return a + b;
+	  }
+
+	  multiply(a, b) {
+		return a * b;
+	  }
+
+	  divide(a, b) {
+		return a / b;
+	  }
+	};
+```    
+- Require that module from another module
+- Get an instance of that imported class and use it.
+```JavaScript
+	const C = require("./test-module-1");
+	const calc1 = new C();
+	console.log(calc1.add(2, 5));
+```  
+
 
 
 
