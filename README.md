@@ -972,8 +972,8 @@ Another request
  - We can react to these events accordingly. 
  - There are also important functions that we can use on streams; for example the read() and pipe() - allows us to plug streams together,passing data from one stream to another. functions.
  
-|stream |Descripttion|Example|Important Events|Important Functions|
-|---------| ------------ |--------|:-------------:|:-------------:|
+|stream|Descripttion|Example|Important Events|Important Functions|
+|------|------------|-------|:--------------:|:-----------------:|
 |Readable Streams| Streams from which we can read(consume) data | http requests<br/>fs read streams | data<br/>end  | pipe()<br/>  read() |
 |Writable Streams| Streams to which we can write data | http responses<br/>fs write streams | drain<br/>finish  | write()<br/>  end() |
 |Dublex Streams| Streams that are both readable and writable | new web socket: comunication channel between client/server |   | |
