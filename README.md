@@ -964,12 +964,17 @@ Another request
 
 ### Intro to Streams
  - Streams are instances of the EventEmitter class
- - We can listend to many different events but the most important events are data(when there is new piece of data to consume) and end. 
+ - We can listend to many different events but the most important events for the Readable and Writeable Streams are:
+   - data(when there is new piece of data to consume) 
+   - end (when there is no more data to consume)
+   - drain
+   - finish
  - We can react to these events accordingly. 
  - There are alos important functions that we can use on streams; for example the read() and pipe() - allows us to plug streams together,passing data from one stream to another. functions.
  
  |    stream     | Descripttion  | Example  |Important Events  | Important Functions |
 | ------------- |:-------------:| -----:|:-------------:|:-------------:|
-| Readable Streams  | Streams from which we can read(consume) data | http requests<br/>fs read stream | data<br/>end  | pipe()<br/>  read() |
-| Readable Streams  | Streams from which we can read(consume) data | - http requests  - fs read stream |  - data  - end  | pipe()  read() |
- 
+| Readable Streams  | Streams from which we can read(consume) data | http requests<br/>fs read streams | data<br/>end  | pipe()<br/>  read() |
+| Writable Streams  | Streams to which we can write data | http responses<br/>fs write streams | drain<br/>finish  | write()<br/>  end() |
+| Dublex Streams  | Streams that are both readable and writable | new web socket: comunication channel between client/server |   | |
+| Transform Streams  | Dublex streams that transform data as it is written or read | zlib Gzip creation |   | |
