@@ -1124,7 +1124,7 @@ OUTPUT:
 	// export one single value
 	module.exports = Calculator;
 ```  
-- A more elegant way would be a class expression instead of declaring a class and assigning the class  directly to module.exports.  
+- A more elegant way would be a class expression instead of declaring a class and assigning the class directly to module.exports.  
 ```JavaScript
 	module.exports = class {
 	  add(a, b) {
@@ -1139,14 +1139,34 @@ OUTPUT:
 		return a / b;
 	  }
 	};
-```    
+```  
 - Require that module from another module
 - Get an instance of that imported class and use it.
 ```JavaScript
+// useage with module.exports
 	const C = require("./test-module-1");
 	const calc1 = new C();
 	console.log(calc1.add(2, 5));
 ```  
+- An alternative for doing ```module.export``` is to **add properties to the exports object** itself.  
+```JavaScript
+// adding properties to the exports object and assing anonymous functions to it:
+	exports.add = (a, b) => a + b;
+	exports.multiply = (a, b) => a * b;
+	exports.divide = (a, b) => a / b;
+```   
+- Require the module which is the the exports object itself. You don't need to instantiate a class to use the methods.
+```JavaScript
+// useage with exports
+	const calc2 = require("./test-module-2");
+	console.log(calc2.multiply(3,5));
+
+// ES6 structuring: (since we receive an object, we can destructure the object and use variable names for the properties in that object.)
+	const { add, multiply, divide } = require("./test-module-2");
+	console.log(divide(2, 5));
+	console.log(calc2.multiply(3,5));
+```  
+
 
 
 
