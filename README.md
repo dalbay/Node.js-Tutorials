@@ -1375,7 +1375,7 @@ getDogPic();
 ```  
 
 
-**Note:**  
+**Note: Returning values from async functions**  
 - async functions also returns a promise
 - *to access a promises future value* we need to access it with the then() method.  
   For example if we wanted to access a string inside the async method, we would have to use the then() method.  
@@ -1411,6 +1411,18 @@ Random dog image saved to file!
 3: Done getting dog pics!
 */
 ```
-
+- Instead of using the then and catch we could also implement the async/await method with an **IIFE (Immediately Invoked Function Expression) - ```(() => {})();```**
+```JavaScript
+(async () => {
+  try {
+    console.log('1: Will get the dog pics!');
+    const x = await getDogPic(); // returns a promise with a result value of the string
+    console.log(x);
+    console.log('3: Done getting dog pics!');
+  } catch (error) {
+    console.log('ERROR');
+  }
+})();
+```
 
 
