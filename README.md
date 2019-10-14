@@ -1183,7 +1183,9 @@ Three step process; with callback functions. Here we will examine the problem wi
 {
     "message": "https://images.dog.ceo/breeds/mountain-bernese/n02107683_2137.jpg",
     "status": "success"
-}```  
+}
+
+```  
 
 1. Read the file: with the File System module.
 ```JavaScript
