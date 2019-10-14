@@ -1214,6 +1214,20 @@ Breed: labrador                         --> Reads the txt file.
    - install the pacakge to your project ```npm i superagent```  
    - to use this package require it in top-level code ```const superagent = require('superagent');```  
    - simply use the get() method for a get request:  
+Final code with npm module superagent for the http request.
+```JavaScript
+const fs = require("fs");
+const superagent = require('superagent');
+
+fs.readFile(`${__dirname}/dog.txt`, (err, data) => {
+  console.log(`Breed: ${data}`);
+  // for the breed replace hound with ${data} (what we will read from the file.);
+  // to get the data add the end() method and pass in the callback function.
+  superagent.get(`https://dog.ceo/api/breed/${data}/images/random`).end((err, res) => {
+    console.log(res.body.message);
+  });
+});
+```   
    
  
 
