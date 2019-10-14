@@ -1165,7 +1165,8 @@ OUTPUT:
 	const { add, multiply, divide } = require("./test-module-2");
 	console.log(divide(2, 5));
 	console.log(calc2.multiply(3,5));
-```  
+```   
+<br/>
 
 ## Asynchronous JavaScript: Promises and Async/Await
 
@@ -1174,8 +1175,29 @@ Three step process; with callback functions. Here we will examine the problem wi
 - Read from a txt file 
 - and make an http request to get a random dog image for a certain breed
 - save that random image to another text file.
-- we will be using the Dog Ceo API in this example. Locate the API endpoint in the documentation  
-![Node api random image](images/nodeDog.png)
+- we will be using the Dog Ceo API in this example. Locate the API endpoint in the documentation.  
+  We will create an http request to this URL and then it will get us back an image.  
+![Node api random image](images/nodeDog.png)  
+1. Read the file: with the File System module.
+```JavaScript
+ const fs = require("fs");
+
+fs.readFile(`${__dirname}/dog.txt`, (err, data) => {
+  console.log(`Breed: ${data}`);
+});
+
+> npm run start
+
+[nodemon] 1.19.3
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching dir(s): *.*
+[nodemon] watching extensions: js,mjs,json
+[nodemon] starting `node index.js`
+Breed: labrador                         --> Here it reads the txt file.
+[nodemon] clean exit - waiting for changes before restart
+
+```
+
 
 
 
