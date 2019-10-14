@@ -1169,6 +1169,7 @@ OUTPUT:
 <br/>
 
 ## Asynchronous JavaScript: Promises and Async/Await
+<br/>
 
 #### Example - Asynchronous JavaScript with Callbacks:
 Three step process; with callback functions. Here we will examine the problem with  callback functions within another. **Callback Hell**
@@ -1258,6 +1259,8 @@ fs.readFile(`${__dirname}/dog.txt`, (err, data) => {
   });
 });
 ```
+<br/>
+
 #### Example - Asynchronous JavaScript with Promises:
 - This example covers **Promises chaining**
 - use a promise for the http request instead of the callback.
@@ -1312,6 +1315,8 @@ readFilePro(`${__dirname}/dog.txt`)
   });
 
 ```
+<br/>
+
 #### Example - Consuming Promises with Async/Await
 - Instead of consuming promises with the then() method, which still makes us use callback functions we can use async/await.
 - Create an async function - ```const getDogPic = async () => {}```
