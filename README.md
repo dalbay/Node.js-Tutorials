@@ -1170,7 +1170,7 @@ OUTPUT:
 
 ## Asynchronous JavaScript: Promises and Async/Await
 
-##### Example - Asynchronous JavaScript with Callbacks:
+#### Example - Asynchronous JavaScript with Callbacks:
 Three step process; with callback functions. Here we will examine the problem with  callback functions within another. **Callback Hell**
 - Read from a txt file 
 - and make an http request to get a random dog image for a certain breed
@@ -1258,14 +1258,15 @@ fs.readFile(`${__dirname}/dog.txt`, (err, data) => {
   });
 });
 ```
-##### Example - Asynchronous JavaScript with Promises:
+#### Example - Asynchronous JavaScript with Promises:
 - This example covers **Promises chaining**
 - use a promise for the http request instead of the callback.
 - the superagent package has support for promisses.
 - the get method will return a promise; all we need to do is to consume it  
   attache the ```then()``` method to that promise and pass in a callback function; this callback function will then be called as soon as the promise is done doing its work and has come back with the data. The data is then available as an argument to that callback. 
 - The then() method only handles fulfilled promises; it doesn't do anything if there was an error. For that chain the ```catch()```method right after the then() method.
-- instead of passing callback functions to the read and write functions, we will promisify the callback so they return pormises.  
+- instead of passing callback functions to the read and write functions, we will promisify the callback so they return pormises. 
+- We only need one single error handler when chaining promises with then() 
 Final Code:  
 ```JavaScript
 const fs = require('fs');
@@ -1311,9 +1312,58 @@ readFilePro(`${__dirname}/dog.txt`)
   });
 
 ```
+#### Example - Consuming Promises with Async/Await
+- Instead of consuming promises with the then() method, which still makes us use callback functions we can use async/await.
+- Create an async function - ```const getDogPic = async () => {}```
+- We can have one or more expressions inside this function
+- We stop the code from running at the promise, wait until it comes back and then save it into a variable.
+```JavaScript
+const getDogPic = async () => {
+  const data = await readFilePro(`${__dirname}/dog.txt`);
+}
+```
+- call the async function to use it. 
+Final Code:  
+```JavaScript
+const fs = require('fs');
+const superagent = require('superagent');
 
+// read file returning a promise:
+const readFilePro = file => {
+  // the promise takes in an executer function; these two arguments are available in the executer function.
+  return new Promise((resolve, reject) => {
+    fs.readFile(file, (err, data) => {
+      if (err) reject('I could not find that file'); // -> will be available in the catch() method.
+      resolve(data); // -> will be available with then() method.
+    });
+  });
+};
 
+// write file using promise
+const writeFilePro = (file, data) => {
+  return new Promise((resolve, reject) => {
+    fs.writeFile(file, data, err => {
+      if (err) reject('Could not write to file');
+      resolve('successs');
+    });
+  });
+};
 
+const getDogPic = async () => {
+  const data = await readFilePro(`${__dirname}/dog.txt`);
+  console.log(`Breed: ${data}`); // -> data in txt file
+
+  const res = await superagent.get(
+    `https://dog.ceo/api/breed/${data}/images/random`
+  );
+  console.log(res.body.message); // -> result of the api call
+
+  await writeFilePro('dog-img.txt', res.body.message);
+  console.log('Random dog image saved to file!'); //-> log msg to console
+};
+
+getDogPic();
+```
 
 
 
