@@ -1259,31 +1259,57 @@ fs.readFile(`${__dirname}/dog.txt`, (err, data) => {
 });
 ```
 ##### Example - Asynchronous JavaScript with Promises:
+- This example covers **Promises chaining**
 - use a promise for the http request instead of the callback.
 - the superagent package has support for promisses.
 - the get method will return a promise; all we need to do is to consume it  
   attache the ```then()``` method to that promise and pass in a callback function; this callback function will then be called as soon as the promise is done doing its work and has come back with the data. The data is then available as an argument to that callback. 
-- The then() method only handles fulfilled promises; it doesn't do anything if there was an error. For that chain the ```catch()```method right after the then() method.  
-The final code:  
+- The then() method only handles fulfilled promises; it doesn't do anything if there was an error. For that chain the ```catch()```method right after the then() method.
+- instead of passing callback functions to the read and write functions, we will promisify the callback so they return pormises.  
+Final Code:  
 ```JavaScript
-const fs = require("fs");
+const fs = require('fs');
 const superagent = require('superagent');
 
-fs.readFile(`${__dirname}/dog.txt`, (err, data) => {
-  console.log(`Breed: ${data}`);
-
-  superagent.get(`https://dog.ceo/api/breed/${data}/images/random`).then(res => {
-    console.log(res.body.message);
-    // writing to a txt file:
-    fs.writeFile('dog-img.txt', res.body.message, err => {
-      // error handling
-      if (err) return console.log(err.message);
-      console.log('Random dog image saved to file!');
+// read file returning a promise:
+const readFilePro = file => {
+  // the promise takes in an executer function; these two arguments are available in the executer function.
+  return new Promise((resolve, reject) => {
+    fs.readFile(file, (err, data) => {
+      if (err) reject('I could not find that file'); // -> will be available in the catch() method.
+      resolve(data); // -> will be available with then() method.
     });
-  }).catch(err => {
+  });
+};
+
+// write file using promise
+const writeFilePro = (file, data) => {
+  return new Promise((resolve, reject) => {
+    fs.writeFile(file, data, err => {
+      if (err) reject('Could not write to file');
+      resolve('successs');
+    });
+  });
+};
+
+// readFilePro, superagent, and writeFilePro return a promise
+// chain them together with the then() handler.
+readFilePro(`${__dirname}/dog.txt`)
+  .then(data => {
+    console.log(`Breed: ${data}`);
+    return superagent.get(`https://dog.ceo/api/breed/${data}/images/random`);
+  })
+  .then(res => {
+    console.log(res.body.message);
+    return fs.writeFilePro('dog-img.txt', res.body.message);
+  })
+  .then(() => {
+    console.log('Random dog image saved to file!');
+  })
+  .catch(err => {
     console.log(err.message);
   });
-});
+
 ```
 
 
