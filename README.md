@@ -1171,7 +1171,7 @@ OUTPUT:
 ## Asynchronous JavaScript: Promises and Async/Await
 <br/>
 
-#### Example - Asynchronous JavaScript with Callbacks:
+### Asynchronous JavaScript with Callbacks:
 Three step process; with callback functions. Here we will examine the problem with  callback functions within another. **Callback Hell**
 - Read from a txt file 
 - and make an http request to get a random dog image for a certain breed
@@ -1261,7 +1261,7 @@ fs.readFile(`${__dirname}/dog.txt`, (err, data) => {
 ```
 <br/>
 
-#### Example - Asynchronous JavaScript with Promises:
+### Asynchronous JavaScript with Promises:
 - This example covers **Promises chaining**
 - use a promise for the http request instead of the callback.
 - the superagent package has support for promisses.
@@ -1317,7 +1317,7 @@ readFilePro(`${__dirname}/dog.txt`)
 ```
 <br/>
 
-#### Example - Consuming Promises with Async/Await
+### Consuming Promises with Async/Await
 - Instead of consuming promises with the then() method, which still makes us use callback functions we can use async/await.
 - Create an async function - ```const getDogPic = async () => {}```
 - We can have one or more expressions inside this function
@@ -1375,7 +1375,7 @@ getDogPic();
 ```  
 
 
-**Note: Returning values from async functions**  
+### Returning values from async functions
 - async functions also returns a promise
 - *to access a promises future value* we need to access it with the then() method.  
   For example if we wanted to access a string inside the async method, we would have to use the then() method.  
@@ -1413,6 +1413,16 @@ Random dog image saved to file!
 ```
 - Instead of using the then and catch we could also implement the async/await method with an **IIFE (Immediately Invoked Function Expression) - ```(() => {})();```**
 ```JavaScript
+	. . .
+  } catch (error) {
+    // throw an error, otherwise the return statement in the bottom will still mark this block successful.
+    throw (error);
+  }
+  // return a string (trying to access this string)
+  return '2: READY';
+};
+
+
 (async () => {
   try {
     console.log('1: Will get the dog pics!');
@@ -1425,4 +1435,42 @@ Random dog image saved to file!
 })();
 ```
 
+### Waiting for Multiple Promises Simultaneously
+- Let's say we wanted to get three random dog images and not just one.
+- instead of awaiting the promise, save it to a variable
+- in order to get the result values create another varible and await all promises and pass in an array of all the promises ```const all = await```
+- Create a new array that only contains the ```body.messages``` Use the map method to loop through the array and save the value of each iteration into another array.
+```JavaScript
+const getDogPic = async () => {
+  try {
+    const data = await readFilePro(`${__dirname}/dog.txt`);
+    console.log(`Breed: ${data}`); // -> data in txt file
 
+    // Multiple promises
+    const res1Promise = superagent.get(
+      `https://dog.ceo/api/breed/${data}/images/random`
+    );
+    const res2Promise = superagent.get(
+      `https://dog.ceo/api/breed/${data}/images/random`
+    );
+    const res3Promise = superagent.get(
+      `https://dog.ceo/api/breed/${data}/images/random`
+    );
+
+    // get result values from the promises:
+    const all = await Promise.all([res1Promise, res2Promise, res3Promise]);
+    const imgs = all.map(el => el.body.message);
+
+    //join the strings and write them to the file.
+    await writeFilePro('dog-img.txt', imgs.join('\n'));
+    console.log('Random dog image saved to file!'); //-> log msg to console
+  } catch (error) {
+    console.log(error);
+
+    // throw an error, otherwise the return statement in the bottom will still mark this block successful.
+    throw (error);
+  }
+  // returns a string
+  return '2: READY';
+};
+```
