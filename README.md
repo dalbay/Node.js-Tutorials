@@ -1244,23 +1244,47 @@ const superagent = require('superagent');
 fs.readFile(`${__dirname}/dog.txt`, (err, data) => {
   console.log(`Breed: ${data}`);
   // for the breed replace hound with ${data} (what we will read from the file.);
-  // to get the data add the end() method and pass in the callback function.
+  // get data with end() method and pass in the callback function.
   superagent.get(`https://dog.ceo/api/breed/${data}/images/random`).end((err, res) => {
     // error handling:  
-    if (err) console.log(err.message);
+    if (err) return console.log(err.message);
     console.log(res.body.message);
-    // writing to a txt file:
+    // writing to a txt file pass in a callback with error message 
     fs.writeFile('dog-img.txt', res.body.message, err => {
       // error handling
-      if (err) console.log(err.message);
+      if (err) return console.log(err.message);
       console.log('Random dog image saved to file!');
     });
   });
 });
 ```
-	
- 
+##### Example - Asynchronous JavaScript with Promises:
+- use a promise for the http request instead of the callback.
+- the superagent package has support for promisses.
+- the get method will return a promise; all we need to do is to consume it  
+  attache the ```then()``` method to that promise and pass in a callback function; this callback function will then be called as soon as the promise is done doing its work and has come back with the data. The data is then available as an argument to that callback. 
+- The then() method only handles fulfilled promises; it doesn't do anything if there was an error. For that chain the ```catch()```method right after the then() method.  
+The final code:  
+```JavaScript
+const fs = require("fs");
+const superagent = require('superagent');
 
+fs.readFile(`${__dirname}/dog.txt`, (err, data) => {
+  console.log(`Breed: ${data}`);
+
+  superagent.get(`https://dog.ceo/api/breed/${data}/images/random`).then(res => {
+    console.log(res.body.message);
+    // writing to a txt file:
+    fs.writeFile('dog-img.txt', res.body.message, err => {
+      // error handling
+      if (err) return console.log(err.message);
+      console.log('Random dog image saved to file!');
+    });
+  }).catch(err => {
+    console.log(err.message);
+  });
+});
+```
 
 
 
