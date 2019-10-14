@@ -1178,10 +1178,17 @@ Three step process; with callback functions. Here we will examine the problem wi
 - we will be using the Dog Ceo API in this example. Locate the API endpoint in the documentation.  
   We will create an http request to this URL and then it will get us back an image.  
 ![Node api random image](images/nodeDog.png)  
+ The JSON file that will return is:
+ ```
+{
+    "message": "https://images.dog.ceo/breeds/mountain-bernese/n02107683_2137.jpg",
+    "status": "success"
+} ```
 1. Read the file: with the File System module.
 ```JavaScript
  const fs = require("fs");
 
+// asynch reading from file:
 fs.readFile(`${__dirname}/dog.txt`, (err, data) => {
   console.log(`Breed: ${data}`);
 });
@@ -1193,10 +1200,19 @@ fs.readFile(`${__dirname}/dog.txt`, (err, data) => {
 [nodemon] watching dir(s): *.*
 [nodemon] watching extensions: js,mjs,json
 [nodemon] starting `node index.js`
-Breed: labrador                         --> Here it reads the txt file.
+Breed: labrador                         --> Reads the txt file.
 [nodemon] clean exit - waiting for changes before restart
 
-```
+```  
+2. Inside the callback function do the http request  
+   - there are multiple ways doing it with native node.js modules
+   - it is easier to use npm modules - here we are using npm module superagent
+   - first, we want the package.json file in our project that will hold the name of the package file. ```npm init``` - do this whenever you start a project.
+   - install the pacakge to your project ```npm i superagent```  
+   - to use this package require it in top-level code ```const superagent = require('superagent');```  
+   - simply use the get() method for a get request:  
+   
+ 
 
 
 
