@@ -1322,6 +1322,7 @@ const getDogPic = async () => {
   const data = await readFilePro(`${__dirname}/dog.txt`);
 }
 ```
+- use try/catch for error handling
 - call the async function to use it. 
 Final Code:  
 ```JavaScript
@@ -1349,14 +1350,18 @@ const writeFilePro = (file, data) => {
 };
 
 const getDogPic = async () => {
-  const data = await readFilePro(`${__dirname}/dog.txt`);
-  console.log(`Breed: ${data}`);        // data in txt file
+  try {
+    const data = await readFilePro(`${__dirname}/dog.txt`);
+    console.log(`Breed: ${data}`); // -> data in txt file
 
-  const res = await superagent.get(`https://dog.ceo/api/breed/${data}/images/random`);
-  console.log(res.body.message);       // result of the api call
+    const res = await superagent.get(`https://dog.ceo/api/breed/${data}/images/random`);
+    console.log(res.body.message); // -> result of the api call
 
-  await writeFilePro('dog-img.txt', res.body.message);
-  console.log('Random dog image saved to file!');  // log msg to console
+    await writeFilePro('dog-img.txt', res.body.message);
+    console.log('Random dog image saved to file!'); //-> log msg to console
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 getDogPic();
