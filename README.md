@@ -1179,11 +1179,12 @@ Three step process; with callback functions. Here we will examine the problem wi
   We will create an http request to this URL and then it will get us back an image.  
 ![Node api random image](images/nodeDog.png)  
  The JSON file that will return is:
- ```
+ ```JSON
 {
     "message": "https://images.dog.ceo/breeds/mountain-bernese/n02107683_2137.jpg",
     "status": "success"
-} ```
+}```  
+
 1. Read the file: with the File System module.
 ```JavaScript
  const fs = require("fs");
