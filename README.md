@@ -1167,6 +1167,17 @@ OUTPUT:
 	console.log(calc2.multiply(3,5));
 ```  
 
+## Asynchronous JavaScript: Promises and Async/Await
+
+##### Example:
+Three step process; with callback functions. Here we will examine the problem with  callback functions within another.
+- Read from a txt file 
+- and make an http request to get a random dog image for a certain breed
+- save that random image to another text file.
+- we will be using the Dog Ceo API in this example. Locate the API endpoint in the documentation  
+![Node api random image](images/nodeDog.png)
+
+
 
 
 
