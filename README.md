@@ -1438,7 +1438,7 @@ Random dog image saved to file!
 ### Waiting for Multiple Promises Simultaneously
 - Let's say we wanted to get three random dog images and not just one.
 - instead of awaiting the promise, save it to a variable
-- in order to get the result values create another varible and await all promises and pass in an array of all the promises ```const all = await```
+- in order to get the result values create another varible and await all promises and pass in an array of all the promises ```const all = await Promise.all([res1Promise, res2Promise, res3Promise]);```
 - Create a new array that only contains the ```body.messages``` Use the map method to loop through the array and save the value of each iteration into another array.
 ```JavaScript
 const getDogPic = async () => {
