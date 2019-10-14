@@ -1170,8 +1170,8 @@ OUTPUT:
 
 ## Asynchronous JavaScript: Promises and Async/Await
 
-##### Example:
-Three step process; with callback functions. Here we will examine the problem with  callback functions within another.
+##### Example - Asynchronous JavaScript with Callbacks:
+Three step process; with callback functions. Here we will examine the problem with  callback functions within another. **Callback Hell**
 - Read from a txt file 
 - and make an http request to get a random dog image for a certain breed
 - save that random image to another text file.
@@ -1213,8 +1213,30 @@ Breed: labrador                         --> Reads the txt file.
    - first, we want the package.json file in our project that will hold the name of the package file. ```npm init``` - do this whenever you start a project.
    - install the pacakge to your project ```npm i superagent```  
    - to use this package require it in top-level code ```const superagent = require('superagent');```  
-   - simply use the get() method for a get request:  
+   - simply use the get() method for a get request
+   - to get the data attach the end() method to the end and pass in a callback function.   
 Final code with npm module superagent for the http request.
+```JavaScript
+const fs = require("fs");
+const superagent = require('superagent');
+
+fs.readFile(`${__dirname}/dog.txt`, (err, data) => {
+  console.log(`Breed: ${data}`);
+  // replace hound with ${data} (the breed will be read from the file.);
+  superagent.get(`https://dog.ceo/api/breed/${data}/images/random`).end((err, res) => {
+    console.log(res.body.message);
+  });
+});
+
+/* OUTPUT:
+Breed: labrador
+https://images.dog.ceo/breeds/labrador/n02099712_2223.jpg
+*/
+```   
+3. Write message to another file 
+   - To do this we need to use the File System inside the http request callback.
+     Another callback inside a callback.  
+	 Final code:
 ```JavaScript
 const fs = require("fs");
 const superagent = require('superagent');
@@ -1224,11 +1246,19 @@ fs.readFile(`${__dirname}/dog.txt`, (err, data) => {
   // for the breed replace hound with ${data} (what we will read from the file.);
   // to get the data add the end() method and pass in the callback function.
   superagent.get(`https://dog.ceo/api/breed/${data}/images/random`).end((err, res) => {
+    // error handling:  
+    if (err) console.log(err.message);
     console.log(res.body.message);
+    // writing to a txt file:
+    fs.writeFile('dog-img.txt', res.body.message, err => {
+      // error handling
+      if (err) console.log(err.message);
+      console.log('Random dog image saved to file!');
+    });
   });
 });
-```   
-   
+```
+	
  
 
 
