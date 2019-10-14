@@ -1317,13 +1317,15 @@ readFilePro(`${__dirname}/dog.txt`)
 - Create an async function - ```const getDogPic = async () => {}```
 - We can have one or more expressions inside this function
 - We stop the code from running at the promise, wait until it comes back and then save it into a variable.
+
 ```JavaScript
 const getDogPic = async () => {
   const data = await readFilePro(`${__dirname}/dog.txt`);
 }
 ```
 - use try/catch for error handling
-- call the async function to use it. 
+- call the async function to use it.  
+
 Final Code:  
 ```JavaScript
 const fs = require('fs');
@@ -1365,8 +1367,45 @@ const getDogPic = async () => {
 };
 
 getDogPic();
-```
+```  
 
+
+**Note:**  
+- async functions also returns a promise
+- *to access a promises future value* we need to access it with the then() method.  
+  For example if we wanted to access a string inside the async method, we would have to use the then() method.  
+  We would also have to ```throw``` an error inside the catch block. This will mark the entire block unsuccessful if we run into an error.
+```JavaScript
+	. . .
+  } catch (error) {
+    // throw an error, otherwise the return statement in the bottom will still mark this block successful.
+    throw (error);
+  }
+  // return a string (trying to access this string)
+  return '2: READY';
+};
+
+
+console.log('1: Will get the dog pics!');
+getDogPic()
+  .then(x => {
+    console.log(x);
+    console.log('3: Done getting dog pics!');
+  })
+  .catch(error => {
+    console.log('ERROR');
+  });
+  
+/* OUTPUT:
+[nodemon] starting `node index.js`
+1: Will get the dog pics!
+Breed: labrador
+https://images.dog.ceo/breeds/labrador/n02099712_2938.jpg
+Random dog image saved to file!
+2: READY
+3: Done getting dog pics!
+*/
+```
 
 
 
