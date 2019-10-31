@@ -228,15 +228,14 @@ const url = require('url');
 const http = require('http');
 const url = require('url');
 
-const server = http.createServer((req,res) => { 
-    const pathName =  res.url;                      // requested url from the page
-    console.log(res,url);
-    res.end('hello from the server');
-    if(pathName === '/' || pathName === '/overview'){
-        res.end('This is the OVERVIEW');
-    }else if(pathName === '/product'){
-        res.end('This is the PRODUCT');
-    }
+const server = http.createServer((req, res) => {
+  const pathName = req.url; // requested url from the page
+  console.log(pathName);
+  if (pathName === "/" || pathName === "/index") {
+    res.end("This is the INDEX");
+  } else {
+    res.end("Wrong request");
+  }
 });
 
 server.listen(8000, '127.0.0.1', () => {
@@ -1474,3 +1473,4 @@ const getDogPic = async () => {
   return '2: READY';
 };
 ```
+<br/>
