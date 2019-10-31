@@ -217,7 +217,7 @@ Run the node application; We can get to this URL on port 8000 on our computer :
 
 
 ### Routing
-- Include the **url-model**
+- Include the **url-module**
 ```javascript
 const url = require('url');
 ```
