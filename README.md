@@ -1,7 +1,5 @@
 [Intro to NODE](#into-to-node)
-<h2 id="intro-to-node">
-Introduction to Node.js and NPM
-</h2>  
+ 
 
 ### Install Node.js:
 
@@ -75,6 +73,10 @@ const fs = require('fs');
 	console.log('File written');
 ```  
 <br/>
+
+<h2 id="intro-to-node">
+Introduction to Node.js and NPM
+</h2> 
 
 
 ### Blocking and Non-Blocking: Asynchronous Nature of Node.js
