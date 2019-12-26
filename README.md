@@ -1,7 +1,10 @@
+---
 ### Table of Content  
 
-1. [Callback Hell](#callback-hell)
-
+A. [Introduction to Node.js and NPM](#introduction-to-nodejs-and-npm)  
+   1. [Install Node.js](#install-nodejs)  
+   2. [What is Node.js](#what-is-nodejs)
+---
 ## Introduction to Node.js and NPM
 
 ### Install Node.js:
@@ -15,7 +18,7 @@
  ``` 
  <br/>
  
-### Introduction to Node.js and NPM
+### What is Node.js  
 
 -	Node.js is a JavaScript Runtime build on Google’s open source V8 JavaScript Engine. 
 -	Node.js enables JavaScript to be run in a different environment than just the browser.
@@ -23,9 +26,7 @@
 
  ![NodeJS and V8](/images/nodeV8.png)
  <br/> 
- 
 
-### What is Node.js
 ![NodeJS why and when](/images/nodeWhy.png)
 
 
