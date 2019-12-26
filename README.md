@@ -14,7 +14,7 @@ A. [Introduction to Node.js and NPM](#introduction-to-nodejs-and-npm)
    6. [Creating a Simple Web Server](#creating-a-simple-web-server)
    7. [Routing](#routing)
    8. [Building a Simple API](#building-a-simple-api)
-   9. [HTML Templating: Building the Templates (UI)](#html-templating-building-the-templates-ui)
+   9. [HTML Templating - Building the Templates (UI)](#html-templating-building-the-templates-ui)
 ---
 ## Introduction to Node.js and NPM
 
