@@ -8,7 +8,7 @@ A. [Introduction to Node.js and NPM](#introduction-to-nodejs-and-npm)
       - [Using Modules - Core Modules](#using-modules-core-modules)
       - [Node Documentations](#node-documentations)
    3. [Reading and Writing Files Synchronosly (blocking)](#reading-and-writing-files-synchronosly-blocking)
-   4. [Blocking and Non-Blocking Asynchronous Nature of Node.js](#blocking-and-nonblocking-asynchronous-nature-of-nodejs)
+   4. [Blocking and Non-Blocking Asynchronous Nature of Node.js](#blocking-and-non-blocking-asynchronous-nature-of-nodejs)
 ---
 ## Introduction to Node.js and NPM
 
