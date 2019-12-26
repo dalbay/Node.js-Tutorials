@@ -1,5 +1,7 @@
 [Intro to NODE](#into-to-node)
-<h2 id="intro-to-node"> Introduction to Node.js and NPM</h2>
+<h2 id="intro-to-node">
+Introduction to Node.js and NPM
+</h2>
 ### Install Node.js:
 
  ![nodeJS image](/images/nodeImg.png)
