@@ -1,10 +1,4 @@
 
-Then link to it by the ID attribute:
-
-[Intro to NODE](#introduction-to-node)
-Also adding an anchor tag directly to the document works as well:
-
-<a id="my-anchor">example</a>
 ## Introduction to Node.js and NPM
 ### Install Node.js:
 
@@ -59,9 +53,7 @@ const fs = require('fs');
 
 
 ### Reading and Writing Files Synchronosly (blocking):
-<h4 id="introduction-to-node">
-Intro to NODE
-</h4>
+
 
 ![NodeJS why and when](/images/nodeReadWrite.png)
 
