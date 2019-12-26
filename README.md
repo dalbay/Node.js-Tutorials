@@ -9,6 +9,12 @@ A. [Introduction to Node.js and NPM](#introduction-to-nodejs-and-npm)
       - [Node Documentations](#node-documentations)
    3. [Reading and Writing Files Synchronosly (blocking)](#reading-and-writing-files-synchronosly-blocking)
    4. [Blocking and Non-Blocking Asynchronous Nature of Node.js](#blocking-and-non-blocking-asynchronous-nature-of-nodejs)
+      - [Callback Hell](#callback-hell)
+   5. [Reading and Writing Files Asynchronously](#reading-and-writing-files-asynchronously)
+   6. [Creating a Simple Web Server](#creating-a-simple-web-server)
+   7. [Routing](#routing)
+   8. [Building a Simple API](#building-a-simple-api)
+   9. [HTML Templating: Building the Templates (UI)](#html-templating-building-the-templates-ui)
 ---
 ## Introduction to Node.js and NPM
 
