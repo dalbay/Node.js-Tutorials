@@ -829,12 +829,12 @@ Here we see all five product slugs in the console. We could store these slugs in
 ![Web Theory front/back end](/images/nodeTheory1.png)
 #### Static Websites vs Dynamic Websites
 ![Web Theory static/dynamic websites](/images/nodeTheory2.png)
-- Because of how powerful browser's have become on the client side, we see more and more websites based on API's.  
-- API powered websites are similar to a dynamic websites. The big difference is that with API we only send the data to the browser, usually in JSON data format, and not the entire website(no html or css).  
-- When building API powered websites, there is always these two steps - Building API and Consuming API.  
-- The building phase of a website moved from the back-end to the front-end. This is why dynamic websites are also called Server-Side Rendered and Client-Side Rendered.  
-For back-end developers it is much easier to build an API and let the front end people build the site. Node is great tool to build API's and dynamic server side rendered websites.  
-API's can also be consumed by other clients than just the browser (native mobile apps).
+- Because of how powerful browsers have become on the client-side, we see more and more websites based on API.
+- API powered websites are like a dynamic website. The difference is that APIs simply send data to the browser, usually in JSON format, and dynamic websites send the entire web page(HTML and CSS).
+- The two steps to develop an API powered website are Building API and Consuming API.
+- The building phase of a website moved from the back end to the front-end. Therefore, dynamic websites are also called Server-Side Rendered and Client-Side Rendered.
+- For back-end developers, it is much easier to build an API and let the front-end people build the site. Node is a great tool to build APIs and dynamic server-side rendered websites.  
+
 #### Dynamic Websites vs API-Powered Websites
 ![Web Theory API/Dynamic websites](/images/nodeTheory3.png)
 
